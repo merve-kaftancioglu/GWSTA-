@@ -225,3 +225,505 @@ for sample_id in "${sample_ids[@]}"; do
 done
 
 ```
+<br>
+
+### CutAdapt (without bash):
+
+```
+#!/bin/bash
+#SBATCH --job-name=cut
+#SBATCH --nodes=1
+#SBATCH --account=user
+#SBATCH --qos=mid_investor
+#SBATCH --partition=mid_investor
+#SBATCH --cpus-per-task=8
+#SBATCH -o %x-%j-slurm.out
+#SBATCH -e %x-%j-slurm.err
+
+# Module
+module load cutadapt/4.0
+
+# Define input and output directories
+input_dir="/cta/users/merve.kaftancioglu/alternative_scenario/seqs/$sample_id"
+output_dir="/cta/users/merve.kaftancioglu/alternative_scenario/cutadapt_M1/output/$sample_id"
+mkdir -p $output_dir
+
+# Define sample IDs
+sample_ids=("h3k27ac_ms_b_ENCSR295QZX" "h3k27ac_ms_b_ENCSR538URI" "h3k27ac_ms_b_ENCSR617GMR" "h3k4me1_ms_b_ENCSR084FXT" "h3k4me1_ms_b_ENCSR480ITK" "h3k4me1_ms_b_ENCSR759DHN" "h3k4me1_ms_b_ENCSR900IAM" "h3k4me1_ms_b_ENCSR931JYC" "h3k4me3_ms_b_ENCSR260CRI" "h3k4me3_ms_b_ENCSR461QMZ" "h3k4me3_ms_b_ENCSR530AVK" "h3k4me3_ms_b_ENCSR713ZYF" "h3k4me3_ms_b_ENCSR923EGO" "h3k9me3_ms_b_ENCSR445DNH" "h3k9me3_ms_b_ENCSR486SZN" "h3k9me3_ms_b_ENCSR983MKX" "h3k27ac_ms_b_ENCSR364OIK" "h3k27ac_ms_b_ENCSR541PLO" "h3k36me3_ms_cd4_ENCSR471WZE" "h3k36me3_ms_cd4_ENCSR473TGK" "h3k4me1_ms_nk_ENCSR482UGV" "h3k4me1_ms_nk_ENCSR718LCI" "h3k4me1_ms_nk_ENCSR806HUT" "h3k4me3_ms_nk_ENCSR234BAD" "h3k4me3_ms_nk_ENCSR703TWY" "h3k4me3_ms_nk_ENCSR755ZGS" "h3k9me3_ms_nk_ENCSR061ATV" "h3k9me3_ms_nk_ENCSR611YIA" "h3k9me3_ms_nk_ENCSR667HUI" "h3k27ac_ms_nk_ENCSR246TTM" "h3k27ac_ms_nk_ENCSR469CFL" "h3k27ac_ms_nk_ENCSR746AIX" "h3k27me3_ms_b_ENCSR009ZRH" "h3k27me3_ms_b_ENCSR182NLA" "h3k27me3_ms_b_ENCSR272YVX" "h3k27me3_ms_b_ENCSR649FUX" "h3k27me3_ms_b_ENCSR842WWX" "h3k36me3_ms_b_ENCSR089VQL" "h3k36me3_ms_b_ENCSR119PSR" "h3k36me3_ms_b_ENCSR238WFK" "h3k36me3_ms_b_ENCSR987OPY" "h3k4me1_ms_cd4_ENCSR036YVP" "h3k4me1_ms_cd4_ENCSR043JIA" "h3k4me1_ms_cd4_ENCSR093VUP" "h3k4me1_ms_cd4_ENCSR124IGC" "h3k4me1_ms_cd4_ENCSR315MYP" "h3k4me1_ms_cd4_ENCSR458QEY" "h3k4me1_ms_cd4_ENCSR485FBT" "h3k4me1_ms_cd4_ENCSR641ZFV" "h3k4me1_ms_cd4_ENCSR687CQX" "h3k4me1_ms_cd8_ENCSR231XAP" "h3k4me1_ms_cd8_ENCSR572XTB" "h3k4me1_ms_cd8_ENCSR788TEF" "h3k4me1_ms_cd8_ENCSR815YZL" "h3k4me1_ms_cd8_ENCSR861FEC" "h3k4me1_ms_cd8_ENCSR940PHE" "h3k4me3_ms_cd4_ENCSR180NCM" "h3k4me3_ms_cd4_ENCSR341QLC" "h3k4me3_ms_cd4_ENCSR482TGI" "h3k4me3_ms_cd4_ENCSR486XJK" "h3k4me3_ms_cd4_ENCSR496LKR" "h3k4me3_ms_cd4_ENCSR603LTN" "h3k4me3_ms_cd4_ENCSR802MXQ" "h3k4me3_ms_cd4_ENCSR878YHM" "h3k4me3_ms_cd4_ENCSR954ZLD" "h3k4me3_ms_cd8_ENCSR231ZZH" "h3k4me3_ms_cd8_ENCSR278QHR" "h3k4me3_ms_cd8_ENCSR516CKJ" "h3k4me3_ms_cd8_ENCSR535YYH" "h3k4me3_ms_cd8_ENCSR741XAE" "h3k4me3_ms_cd8_ENCSR848XJL" "h3k9me3_ms_cd4_ENCSR057IZD" "h3k9me3_ms_cd4_ENCSR550DPT" "h3k9me3_ms_cd4_ENCSR677OEF" "h3k9me3_ms_cd4_ENCSR729ZXH" "h3k9me3_ms_cd4_ENCSR851RJV" "h3k9me3_ms_cd4_ENCSR919DFZ" "h3k9me3_ms_cd4_ENCSR953STZ" "h3k9me3_ms_cd4_ENCSR959VZU" "h3k9me3_ms_cd8_ENCSR101USF" "h3k9me3_ms_cd8_ENCSR354GNT" "h3k9me3_ms_cd8_ENCSR377QYB" "h3k9me3_ms_cd8_ENCSR733LCG" "h3k9me3_ms_cd8_ENCSR980KTW" "h3k27ac_ms_cd4_ENCSR200SSJ" "h3k27ac_ms_cd4_ENCSR322MTA" "h3k27ac_ms_cd4_ENCSR331WMS" "h3k27ac_ms_cd4_ENCSR350UKV" "h3k27ac_ms_cd4_ENCSR474PYR" "h3k27ac_ms_cd4_ENCSR520QDR" "h3k27ac_ms_cd4_ENCSR540XNK" "h3k27ac_ms_cd4_ENCSR705VSO" "h3k27ac_ms_cd4_ENCSR832UMM" "h3k27ac_ms_cd8_ENCSR078ATS" "h3k27ac_ms_cd8_ENCSR348YRH" "h3k27ac_ms_cd8_ENCSR458TOW" "h3k27ac_ms_cd8_ENCSR476IPR" "h3k27ac_ms_cd8_ENCSR787HDF" "h3k27ac_ms_cd8_ENCSR923JIB" "h3k27me3_ms_nk_ENCSR469QVG" "h3k27me3_ms_nk_ENCSR565WDW" "h3k36me3_ms_nk_ENCSR158VSE" "h3k36me3_ms_nk_ENCSR245KON" "h3k36me3_ms_nk_ENCSR530YDY" "h3k36me_ms_cd4_ENCSR532PXR" "h3k27me3_ms_cd4_ENCSR277XYX" "h3k27me3_ms_cd4_ENCSR526TNC" "h3k27me3_ms_cd4_ENCSR592EKF" "h3k27me3_ms_cd4_ENCSR613UFD" "h3k27me3_ms_cd4_ENCSR740SDR" "h3k27me3_ms_cd4_ENCSR779JLY" "h3k27me3_ms_cd4_ENCSR993CTA" "h3k27me3_ms_cd8_ENCSR116FVG" "h3k27me3_ms_cd8_ENCSR122JCM" "h3k27me3_ms_cd8_ENCSR216ZVA" "h3k27me3_ms_cd8_ENCSR284IKS" "h3k27me3_ms_cd8_ENCSR385BOZ" "h3k27me3_ms_cd8_ENCSR521SFR" "h3k36me3_ms_cd4_ENCSR276NGH" "h3k36me3_ms_cd4_ENCSR330CQU" "h3k36me3_ms_cd4_ENCSR482VIB" "h3k36me3_ms_cd4_ENCSR785PKM" "h3k36me3_ms_cd4_ENCSR865FTW" "h3k36me3_ms_cd4_ENCSR898VJE" "h3k36me3_ms_cd8_ENCSR239OWL" "h3k36me3_ms_cd8_ENCSR435MSB" "h3k36me3_ms_cd8_ENCSR631VIW" "h3k36me3_ms_cd8_ENCSR652WFO" "h3k36me3_ms_cd8_ENCSR757FGN" "h3k4me1_normal_b_ENCSR156BXM" "h3k4me3_normal_b_ENCSR791CAF" "h3k9me3_normal_b_ENCSR445LTM" "h3k27ac_normal_b_ENCSR685KZA" "h3k4me1_normal_nk_ENCSR277YKG" "h3k4me3_normal_nk_ENCSR394JFQ" "h3k9me3_normal_nk_ENCSR025UNZ" "h3k27ac_normal_nk_ENCSR977FMZ" "h3k27me3_normal_b_ENCSR589LHR" "h3k36me3_normal_b_ENCSR831AXK" "h3k4me1_normal_cd4_ENCSR102SOR" "h3k4me1_normal_cd8_ENCSR217SHH" "h3k4me3_normal_cd4_ENCSR537KJA" "h3k4me3_normal_cd8_ENCSR123ZAT" "h3k9me3_normal_cd4_ENCSR433EWI" "h3k9me3_normal_cd8_ENCSR294HTM" "h3k27ac_normal_cd4_ENCSR819NCZ" "h3k27ac_normal_cd8_ENCSR976RWL" "h3k27me3_normal_nk_ENCSR639NIG" "h3k36me3_normal_nk_ENCSR056GJY" "h3k27me3_normal_cd4_ENCSR068YVZ" "h3k27me3_normal_cd8_ENCSR720QRX" "h3k36me3_normal_cd4_ENCSR864OKB" "h3k36me3_normal_cd8_ENCSR303SQG" "h3k27me3_normal_cd4_ENCSR002UMT" "h3k4me3_normal_cd4_ENCSR935ELX")
+
+for file in "${files[@]}"; do
+    input_file="$input_dir/${file}.fastq.gz"
+    output_file="$output_dir/${file}_processed.fastq.gz"
+    cutadapt -b file:adapters.fasta -j 8 -q 15 -o -p "$output_file" "$input_file"
+done
+
+```
+<br>
+
+### STAR (didn't work):
+(a)
+
+```
+#!/bin/bash
+#SBATCH --job-name=cut
+#SBATCH --nodes=1
+#SBATCH --account=user
+#SBATCH --qos=mid_investor
+#SBATCH --partition=mid_investor
+#SBATCH --cpus-per-task=16
+#SBATCH -o /cta/users/merve.kaftancioglu/alternative_scenario/star_as/out-err/%x-%j-slurm.out
+#SBATCH -e /cta/users/merve.kaftancioglu/alternative_scenario/star_as/out-err/%x-%j-slurm.err
+
+# Load STAR module
+module load star-2.7.0e-gcc-9.2.0-vynasg3
+
+# Define paths (replace with your actual paths)
+genome_fasta="/cta/users/merve.kaftancioglu/alternative_scenario/star_as/reference/human_g1k_v37.fasta"
+star_index_dir="/cta/users/merve.kaftancioglu/star_as/index"
+
+# Check if genome fasta file exists
+if [ ! -f "$genome_fasta" ]; then
+  echo "Error: Genome fasta file not found at: $genome_fasta"
+  exit 1
+fi
+
+# Check if star_index_dir exists (and create if not)
+if [ ! -d "$star_index_dir" ]; then
+  echo "Creating star_genome_index directory: $star_index_dir"
+  mkdir -p "$star_index_dir"
+fi
+
+# Define number of threads (adjust based on your system)
+threads=8
+
+# STAR command
+star_cmd="STAR \
+  --runThreadN $threads \
+  --runMode genomeGenerate \
+  --genomeDir $star_index_dir \
+  --genomeFastaFiles $genome_fasta"
+
+# Run STAR and handle potential errors
+echo "Building STAR genome index..."
+$star_cmd
+
+if [ $? -ne 0 ]; then
+  echo "Error: STAR failed to generate genome index."
+  exit 1
+fi
+
+echo "STAR genome index created successfully in: $star_index_dir"
+```
+
+<br>
+
+(b)
+
+```
+#!/bin/bash
+#SBATCH --job-name=star_single
+#SBATCH --nodes=1
+#SBATCH --account=users
+#SBATCH --qos=mid_mdbf
+#SBATCH --partition=mid_mdbf
+#SBATCH --cpus-per-task=16
+#SBATCH -o /cta/users/merve.kaftancioglu/alternative_scenario/star_as/out-err/%x-%j-slurm.out
+#SBATCH -e /cta/users/merve.kaftancioglu/alternative_scenario/star_as/out-err/%x-%j-slurm.err
+
+# Define paths 
+genome_fasta="/cta/users/merve.kaftancioglu/alternative_scenario/star_as/reference/human_g1k_v37.fasta"
+star_index_dir="/cta/users/merve.kaftancioglu/alternative_scenario/star_as/index"
+
+# Check if genome fasta file exists
+if [ ! -f "$genome_fasta" ]; then
+  echo "Error: Genome fasta file not found at: $genome_fasta"
+  exit 1
+fi
+
+# Check if star_index_dir exists (and create if not)
+if [ ! -d "$star_index_dir" ]; then
+  echo "Creating star_genome_index directory: $star_index_dir"
+  mkdir -p "$star_index_dir"
+fi
+
+# Define number of threads (adjust based on your system)
+threads=8
+
+# STAR command
+star_cmd="STAR \
+  --runThreadN $threads \
+  --runMode genomeGenerate \
+  --genomeDir $star_index_dir \
+  --genomeFastaFiles $genome_fasta"
+
+# Run STAR and handle potential errors
+echo "Building STAR genome index..."
+$star_cmd
+
+if [ $? -ne 0 ]; then
+  echo "Error: STAR failed to generate genome index."
+  exit 1
+fi
+
+echo "STAR genome index created successfully in: $star_index_dir"
+
+```
+
+<br>
+
+(c)
+
+```
+#!/bin/bash
+#SBATCH --job-name=star_alignment
+#SBATCH --nodes=1
+#SBATCH --account=users
+#SBATCH --qos=mid_mdbf
+#SBATCH --partition=mid_mdbf
+#SBATCH --cpus-per-task=16
+#SBATCH -o /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/out-err/%x-%j-slurm.out
+#SBATCH -e /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/out-err/%x-%j-slurm.err
+
+# Load STAR module
+module load star-2.7.0e-gcc-9.2.0-vynasg3
+
+# Define directories
+genome_dir="/cta/users/merve.kaftancioglu/alternative_scenario/star_as/index"  # Update with your genome directory
+input_dir="/cta/users/merve.kaftancioglu/alternative_scenario/trimmomatic_as/output"  # Update with your input directory
+output_dir="/cta/users/merve.kaftancioglu/alternative_scenario/star_as/output"  # Update with your output directory
+
+# Run STAR for each folder within the input directory
+for sample_dir in "$input_dir"/*; do
+  # Check if it's a directory (avoid hidden files or non-directories)
+  if [[ -d "$sample_dir" ]]; then
+    # Extract sample ID from directory name (modify if needed)
+    sample_id=$(basename "$sample_dir")
+
+    # Define input and output paths with sample ID
+    input_fastq="$sample_dir"/*.fastq.gz
+    output_bam="$output_dir/$sample_id/$sample_id.bam"
+
+    # Run STAR for the current sample
+    STAR --genomeDir "$genome_dir" \
+         --runThreadN 16 \  # Adjust threads based on your resource allocation
+         --readFilesIn "$input_fastq" \  # No colon after flag name
+         --outFileNamePrefix "$output_dir/$sample_id/" \  # Include trailing slash for proper path
+         --outSAMtype BAM SortedByCoordinate \  # No colon after flag name
+         --outSAMunmapped Within \
+         --outSAMattributes Standard \
+         --alignEndsType EndToEnd
+  fi
+done
+
+```
+
+<br>
+
+### Bowtie2 (didn't work):
+
+(a)
+
+```
+#!/bin/bash
+#SBATCH --job-name=bowtie2_longread_alignment
+#SBATCH --nodes=1
+#SBATCH --account=users
+#SBATCH --qos=mid_mdbf
+#SBATCH --partition=mid_mdbf
+#SBATCH --cpus-per-task=16
+#SBATCH -o /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/out-err/%x-%j-slurm.out
+#SBATCH -e /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/out-err/%x-%j-slurm.err
+
+# Load Bowtie2 module
+module load bowtie2-2.3.5.1-gcc-9.2.0-ae4dozk
+
+# Define directories (consider adjusting paths)
+input_dir="/cta/users/merve.kaftancioglu/alternative_scenario/trimmomatic_as/output"
+output_dir="/cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/longread_output"  # Separate output directory for long reads
+
+# Path to reference genome FASTA file
+reference_genome="/cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/reference/human_g1k_v37.fasta"
+
+# Create Bowtie2 index (if not already done)
+bowtie2-build "$reference_genome" /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index
+
+# Loop through all FASTQ files in the input directory
+for input_fastq in $(find "${input_dir}" -type f -name "*.fastq.gz" ! -name "*.*"); do
+
+  sample_id="${input_fastq##*/}"  
+  sample_id="${sample_id//.fastq.gz}" 
+
+  echo "Processing ${sample_id}..."
+
+  # Create output directory (if it doesn't exist)
+  mkdir -p "${output_dir}/${sample_id}"
+
+  # Output SAM file path
+  output_sam="${output_dir}/${sample_id}/${sample_id}.sam"
+
+  # Run Bowtie2 with the current FASTQ file, specifying output format (-S) as SAM and "--very-sensitive" flag
+  bowtie2 --threads 16 -p 16 --trim3 30 --very-sensitive -x /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index -U $input_fastq -S $output_sam
+
+  # Optional: Check for successful completion (add this block if desired)
+  if [ $? -eq 0 ]; then
+    echo "Alignment for ${sample_id} completed successfully."
+  else
+    echo "Error occurred during alignment for ${sample_id}. Check slurm error logs for details."
+  fi
+done
+
+```
+
+<br>
+
+(b)
+
+```
+#!/bin/bash
+#SBATCH --job-name=bowtie2_alignment
+#SBATCH --nodes=1
+#SBATCH --account=users
+#SBATCH --qos=mid_mdbf
+#SBATCH --partition=mid_mdbf
+#SBATCH --cpus-per-task=16
+#SBATCH -o /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/out-err/%x-%j-slurm.out
+#SBATCH -e /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/out-err/%x-%j-slurm.err
+
+# Load Bowtie2 module
+module load bowtie2-2.3.5.1-gcc-9.2.0-ae4dozk
+
+# Define directories
+input_dir="/cta/users/merve.kaftancioglu/alternative_scenario/trimmomatic_as/output"
+output_dir="/cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/output"
+
+# Path to reference genome FASTA file
+reference_genome="/cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/reference/human_g1k_v37.fasta"
+
+# Create Bowtie2 index (if not already done)
+bowtie2-build "$reference_genome" /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index
+
+# Loop through all FASTQ files in the input directory using find
+for input_fastq in $(find "${input_dir}" -type f -name "*.fastq.gz" ! -name "*.*"); do
+
+  sample_id="${input_fastq##*/}"  
+  sample_id="${sample_id//.fastq.gz}" 
+
+  echo "Processing ${sample_id}..."
+
+  # Create output directory (if it doesn't exist)
+  mkdir -p "${output_dir}/${sample_id}"
+
+  # Output SAM file path
+  output_sam="${output_dir}/${sample_id}/${sample_id}.sam"
+
+  # Run Bowtie2 with the current FASTQ file, specifying output format (-S) as SAM
+  bowtie2 --threads 16 -p 16 --trim3 30 -x /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index -U $input_fastq -S $output_sam
+done
+
+```
+<br>
+
+(c)
+
+```
+#!/bin/bash
+#SBATCH --job-name=bowtie2_alignment
+#SBATCH --nodes=1
+#SBATCH --account=users
+#SBATCH --qos=mid_mdbf
+#SBATCH --partition=mid_mdbf
+#SBATCH --cpus-per-task=16
+#SBATCH -o /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/out-err/%x-%j-slurm.out
+#SBATCH -e /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/out-err/%x-%j-slurm.err
+
+# Load Bowtie2 module
+module load bowtie2-2.3.5.1-gcc-9.2.0-ae4dozk
+
+# Define directories
+input_dir="/cta/users/merve.kaftancioglu/alternative_scenario/trimmomatic_as/output"
+output_dir="/cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/output"
+
+# Path to reference genome FASTA file
+reference_genome="/cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/reference/human_g1k_v37.fasta"
+
+# Create Bowtie2 index (if not already done)
+bowtie2-build "$reference_genome" /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index
+
+# Loop through all FASTQ files in the input directory using find
+for input_fastq in $(find "${input_dir}" -type f -name "*.fastq.gz" ! -name "*.*"); do
+
+  sample_id="${input_fastq##*/}"  
+  sample_id="${sample_id//.fastq.gz}" 
+
+  echo "Processing ${sample_id}..."
+
+  # Create output directory (if it doesn't exist)
+  mkdir -p "${output_dir}/${sample_id}"
+
+  # Output BAM file path
+  output_bam="${output_dir}/${sample_id}/${sample_id}.bam"
+
+  # Run Bowtie2 with the current FASTQ file
+  bowtie2 --threads 16 -p 16 --trim3 30 -x reference_genome -U $input_fastq -S $output_bam
+  # bowtie2 -x /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index -U "$input_fastq" -S "$output_bam"
+done
+
+```
+
+<br>
+
+(d)
+
+```
+#!/bin/bash
+#SBATCH --job-name=bowtie2_alignment
+#SBATCH --nodes=1
+#SBATCH --account=users
+#SBATCH --qos=mid_mdbf
+#SBATCH --partition=mid_mdbf
+#SBATCH --cpus-per-task=16
+#SBATCH -o /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/out-err/%x-%j-slurm.out
+#SBATCH -e /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/out-err/%x-%j-slurm.err
+
+# Load Bowtie2 module
+module load bowtie2-2.3.5.1-gcc-9.2.0-ae4dozk
+
+# Define directories
+input_dir="/cta/users/merve.kaftancioglu/alternative_scenario/trimmomatic_as/output"
+output_dir="/cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/output"
+
+# Path to reference genome FASTA file
+reference_genome="/cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/reference/human_g1k_v37.fasta"
+
+# Create Bowtie2 index (if not already done)
+bowtie2-build "$reference_genome" /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index
+
+# Loop through all FASTQ files in the input directory
+for input_fastq in "${input_dir}"/*.fastq.gz; do
+  # Extract sample ID from filename (assuming filenames start with sample ID)
+  # Modify this part to match your specific filename format if needed
+  sample_id="${input_fastq##*/}"  # Double ## removes everything before the last slash (/)
+  sample_id="${sample_id//.fastq.gz}"  # Remove .fastq.gz extension
+
+  echo "Processing ${sample_id}..."
+
+  # Create output directory (if it doesn't exist)
+  mkdir -p "${output_dir}/${sample_id}"
+
+  # Output BAM file path
+  output_bam="${output_dir}/${sample_id}/${sample_id}.bam"
+
+  # Run Bowtie2 with the current FASTQ file
+  bowtie2 -x /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index -U "$input_fastq" -S "$output_bam"
+done
+
+```
+
+<br>
+
+(e)
+
+```
+#!/bin/bash
+#SBATCH --job-name=bowtie2_alignment
+#SBATCH --nodes=1
+#SBATCH --account=users
+#SBATCH --qos=mid_mdbf
+#SBATCH --partition=mid_mdbf
+#SBATCH --cpus-per-task=16
+#SBATCH -o /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/out-err/%x-%j-slurm.out
+#SBATCH -e /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/out-err/%x-%j-slurm.err
+
+# Load Bowtie2 module
+module load bowtie2-2.3.5.1-gcc-9.2.0-ae4dozk
+
+# Define directories
+input_dir="/cta/users/merve.kaftancioglu/alternative_scenario/trimmomatic_as/output"
+output_dir="/cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/output"
+
+# Path to reference genome FASTA file
+reference_genome="/cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/reference/human_g1k_v37.fasta"
+
+# Create Bowtie2 index (if not already done)
+bowtie2-build "$reference_genome" /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index
+
+# Loop through all FASTQ files in the input directory using find
+for input_fastq in $(find "${input_dir}" -type f -name "*.fastq.gz" ! -name "*.*"); do
+
+  sample_id="${input_fastq##*/}"  
+  sample_id="${sample_id//.fastq.gz}" 
+
+  echo "Processing ${sample_id}..."
+
+  # Create output directory (if it doesn't exist)
+  mkdir -p "${output_dir}/${sample_id}"
+
+  # Output SAM file path
+  output_sam="${output_dir}/${sample_id}/${sample_id}.sam"
+
+  # Run Bowtie2 with the current FASTQ file, specifying output format (-U) as SAM
+  bowtie2 --threads 16 -p 16 --trim3 30 -x /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index -U $input_fastq -U $output_sam
+  # Note the change: -U $output_sam specifies the output SAM file
+done
+
+```
+
+<br>
+
+(f)
+
+```
+#!/bin/bash
+#SBATCH --job-name=bowtie2_alignment
+#SBATCH --nodes=1
+#SBATCH --account=users
+#SBATCH --qos=mid_mdbf
+#SBATCH --partition=mid_mdbf
+#SBATCH --cpus-per-task=16
+#SBATCH -o /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/out-err/%x-%j-slurm.out
+#SBATCH -e /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/out-err/%x-%j-slurm.err
+
+# Load Bowtie2 module
+module load bowtie2-2.3.5.1-gcc-9.2.0-ae4dozk
+
+# Sample IDs 
+sample_ids=("h3k27ac_ms_b_ENCSR295QZX" "h3k27ac_ms_b_ENCSR364OIK" "h3k27ac_ms_b_ENCSR538URI")
+
+# Directories
+input_dir="/cta/users/merve.kaftancioglu/alternative_scenario/trimmomatic_as/output"
+output_dir="/cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/output"
+index_dir="/cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index"  
+
+# Create Bowtie2 index 
+bowtie2-build "$reference_genome" "$index_dir"
+
+# Loop through samples
+for sample_id in "${sample_ids[@]}"; do
+  echo "Processing ${sample_id}..."
+
+  # Create output directory 
+  mkdir -p "${output_dir}/${sample_id}"
+
+  # Combine input and output paths with sample ID
+  input_fastq="${input_dir}/${sample_id}"/*.fastq.gz
+  output_bam="${output_dir}/${sample_id}/${sample_id}.bam"
+
+  # Run Bowtie2 with trimming
+  bowtie2 --threads 16 -p 16 --trim3 30 -x "$index_dir" -U "$input_fastq" | samtools view -bS - > "$output_bam"
+  
+  # Convert BAM to SAM
+  input_bam="$output_bam"
+  output_sam="${output_dir}/${sample_id}/${sample_id}.sam"
+  samtools view -h -o "$output_sam" "$input_b
+
+  echo "Finished processing ${sample_id}"
+done
+
+echo "All samples processed!"
+
+```
+
+<br>
+
+### BWA:
+
