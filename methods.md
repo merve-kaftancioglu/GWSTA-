@@ -30,7 +30,7 @@ echo "DONE!"
 ```
 <br>
 
-MultiQC (
+# MultiQC (without bash):
 
 ```
 multiqc -o /cta/users/merve.kaftancioglu/alternative_scenario/post-trim_fastQC_as/output_merged_all /cta/users/merve.kaftancioglu/alternative_scenario/post-trim_fastQC_as/output_merged_all/*_fastqc.zip
@@ -189,7 +189,7 @@ multiqc -o /cta/users/merve.kaftancioglu/alternative_scenario/multiqc_data/h3k4m
 
 ```
 
-Trimmomatic (divided into ~50 files):
+# Trimmomatic (divided into ~50 files):
 
 ```
 #!/bin/bash
