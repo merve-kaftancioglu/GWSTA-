@@ -97,6 +97,7 @@ Singularity v. 3.8.4
 
 Snakemake v. 5.23
 
+IGV v. 2.17.3
 
 ## References 
 
@@ -165,6 +166,8 @@ Kornek, B., & Lassmann, H. (2003). Neuropathology of multiple sclerosis - New co
 Kosa, P., Barbour, C., Varosanec, M., Wichman, A., Sandford, M., Greenwood, M., & Bielekova, B. (2022). Molecular models of multiple sclerosis severity identify heterogeneity of pathogenic mechanisms. Nature Communications, 13(1). https://doi.org/10.1038/s41467-022-35357-4
 
 Kouli, A., Jensen, M., Papastavrou, V., Scott, K. M., Kolenda, C., Parker, C., Solim, I. H., Camacho, M., Martin-Ruiz, C., & Williams-Gray, C. H. (2021). T lymphocyte senescence is attenuated in Parkinson’s disease. Journal of Neuroinflammation, 18(1). https://doi.org/10.1186/s12974-021-02287-9
+
+Li, H. (n.d.). Which human reference genome to use?. Sitewide ATOM. https://lh3.github.io/2017/11/13/which-human-reference-genome-to-use 
 
 Li, X., Xiao, B., & Chen, X. S. (2017). DNA Methylation: a New Player in Multiple Sclerosis. In Molecular Neurobiology (Vol. 54, Issue 6, pp. 4049–4059). Humana Press Inc. https://doi.org/10.1007/s12035-016-9966-3
 
