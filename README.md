@@ -236,5 +236,6 @@ YouTube. (2024, April 25). Biyoenformatik Analizlerde Tekrarlanabilirlik: “nex
 Zhang, F., Aschenbrenner, D., Yoo, J. Y., & Zuo, T. (2022). The gut mycobiome in health, disease, and clinical applications in association with the gut bacterial microbiome assembly. In The Lancet Microbe (Vol. 3, Issue 12, pp. e969–e983). Elsevier Ltd. https://doi.org/10.1016/S2666-5247(22)00203-8
 
 Zhang, X., Liu, T., Hou, X., Zhou, Z., Zhang, F., Ma, H., Wu, X., & Jiang, J. (2023). Exosomes secreted by mesenchymal stem cells delay brain aging b upregulating SIRT1 expression. Scientific Reports, 13(1). https://doi.org/10.1038/s41598-023-40543-5
+
 Zierfuss, B., Larochelle, C., & Prat, A. (2024). Blood–brain barrier dysfunction in multiple sclerosis: causes, consequences, and potential effects of therapies. In The Lancet Neurology (Vol. 23, Issue 1, pp. 95–109). Elsevier Ltd. https://doi.org/10.1016/S1474-4422(23)00377-0
  
