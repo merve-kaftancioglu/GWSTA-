@@ -246,6 +246,6 @@ Zierfuss, B., Larochelle, C., & Prat, A. (2024). Blood–brain barrier dysfuncti
 
 Details of the samples: https://docs.google.com/spreadsheets/d/1cLsejNY6V_bZS2QRhoWMrBAu4JIZdUGq/edit#gid=2018365031
 
-Full MultiQC analysis: https://drive.google.com/file/d/1SPVfamqntS4RtfoqQ0XMC3Ut8fVsBFFn/view?usp=drive_link
+Full MultiQC analysis report: https://drive.google.com/file/d/1SPVfamqntS4RtfoqQ0XMC3Ut8fVsBFFn/view?usp=drive_link
 
-pdf version: https://drive.google.com/file/d/11abFgQmwUsYuG9pNh7RxAraQb3OWmNUS/view?usp=sharing
+pdf version of the report: https://drive.google.com/file/d/11abFgQmwUsYuG9pNh7RxAraQb3OWmNUS/view?usp=sharing
