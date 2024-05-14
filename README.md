@@ -242,3 +242,9 @@ Zhang, X., Liu, T., Hou, X., Zhou, Z., Zhang, F., Ma, H., Wu, X., & Jiang, J. (2
 
 Zierfuss, B., Larochelle, C., & Prat, A. (2024). Blood–brain barrier dysfunction in multiple sclerosis: causes, consequences, and potential effects of therapies. In The Lancet Neurology (Vol. 23, Issue 1, pp. 95–109). Elsevier Ltd. https://doi.org/10.1016/S1474-4422(23)00377-0
  
+### Supplemental Data
+
+Details of the samples: https://docs.google.com/spreadsheets/d/1cLsejNY6V_bZS2QRhoWMrBAu4JIZdUGq/edit#gid=2018365031
+
+Full MultiQC analysis: https://drive.google.com/file/d/1SPVfamqntS4RtfoqQ0XMC3Ut8fVsBFFn/view?usp=drive_link
+pdf version: https://drive.google.com/file/d/11abFgQmwUsYuG9pNh7RxAraQb3OWmNUS/view?usp=sharing
