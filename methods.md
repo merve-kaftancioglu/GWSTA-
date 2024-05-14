@@ -1,5 +1,5 @@
 the bash scripts: 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -60,7 +60,7 @@ for sample_dir in "$input_dir"/*; do
   fi
 done
 
-!/bin/bash
+"""!/bin/bash
 
  Load STAR module (if applicable)
 module load star-2.7.0e-gcc-9.2.0-vynasg3   Replace with your module name (if used)
@@ -84,7 +84,7 @@ check_star_binary() {
 check_star_binary
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -145,13 +145,13 @@ for sample_dir in "$input_dir"/*; do
   fi
 done
 
-!/bin/bash    
+"""!/bin/bash    
 files_to_merge=("/home/merve/Downloads/h3k27ac_ms_b_ENCSR295QZX_links.txt"      "/home/merve/Downloads/h3k27ac_ms_b_ENCSR538URI_links.txt"      "/home/merve/Downloads/h3k27ac_ms_b_ENCSR617GMR_links.txt"      "/home/merve/Downloads/h3k4me1_ms_b_ENCSR084FXT_links.txt"      "/home/merve/Downloads/h3k4me1_ms_b_ENCSR480ITK_links.txt"      "/home/merve/Downloads/h3k4me1_ms_b_ENCSR759DHN_links.txt"      "/home/merve/Downloads/h3k4me1_ms_b_ENCSR900IAM_links.txt"      "/home/merve/Downloads/h3k4me1_ms_b_ENCSR931JYC_links.txt"      "/home/merve/Downloads/h3k4me3_ms_b_ENCSR260CRI_links.txt"      "/home/merve/Downloads/h3k4me3_ms_b_ENCSR461QMZ_links.txt"      "/home/merve/Downloads/h3k4me3_ms_b_ENCSR530AVK_links.txt"      "/home/merve/Downloads/h3k4me3_ms_b_ENCSR713ZYF_links.txt"      "/home/merve/Downloads/h3k4me3_ms_b_ENCSR923EGO_links.txt"      "/home/merve/Downloads/h3k9me3_ms_b_ENCSR445DNH_links.txt"      "/home/merve/Downloads/h3k9me3_ms_b_ENCSR486SZN_links.txt"      "/home/merve/Downloads/h3k9me3_ms_b_ENCSR983MKX_links.txt"      "/home/merve/Downloads/h3k27ac_ms_b_ENCSR364OIK_links.txt"      "/home/merve/Downloads/h3k27ac_ms_b_ENCSR541PLO_links.txt"      "/home/merve/Downloads/h3k36me3_ms_cd4_ENCSR471WZE_links.txt"      "/home/merve/Downloads/h3k36me3_ms_cd4_ENCSR473TGK_links.txt"      "/home/merve/Downloads/h3k4me1_ms_nk_ENCSR482UGV_links.txt"      "/home/merve/Downloads/h3k4me1_ms_nk_ENCSR718LCI_links.txt"      "/home/merve/Downloads/h3k4me1_ms_nk_ENCSR806HUT_links.txt"      "/home/merve/Downloads/h3k4me3_ms_nk_ENCSR234BAD_links.txt"      "/home/merve/Downloads/h3k4me3_ms_nk_ENCSR703TWY_links.txt"      "/home/merve/Downloads/h3k4me3_ms_nk_ENCSR755ZGS_links.txt"      "/home/merve/Downloads/h3k9me3_ms_nk_ENCSR061ATV_links.txt"      "/home/merve/Downloads/h3k9me3_ms_nk_ENCSR611YIA_links.txt"      "/home/merve/Downloads/h3k9me3_ms_nk_ENCSR667HUI_links.txt"      "/home/merve/Downloads/h3k27ac_ms_nk_ENCSR246TTM_links.txt"      "/home/merve/Downloads/h3k27ac_ms_nk_ENCSR469CFL_links.txt"      "/home/merve/Downloads/h3k27ac_ms_nk_ENCSR746AIX_links.txt"      "/home/merve/Downloads/h3k27me3_ms_b_ENCSR009ZRH_links.txt"      "/home/merve/Downloads/h3k27me3_ms_b_ENCSR182NLA_links.txt"      "/home/merve/Downloads/h3k27me3_ms_b_ENCSR272YVX_links.txt"      "/home/merve/Downloads/h3k27me3_ms_b_ENCSR649FUX_links.txt"      "/home/merve/Downloads/h3k27me3_ms_b_ENCSR842WWX_links.txt"      "/home/merve/Downloads/h3k36me3_ms_b_ENCSR089VQL_links.txt"      "/home/merve/Downloads/h3k36me3_ms_b_ENCSR119PSR_links.txt"      "/home/merve/Downloads/h3k36me3_ms_b_ENCSR238WFK_links.txt"      "/home/merve/Downloads/h3k36me3_ms_b_ENCSR987OPY_links.txt"      "/home/merve/Downloads/h3k4me1_ms_cd4_ENCSR036YVP_links.txt"      "/home/merve/Downloads/h3k4me1_ms_cd4_ENCSR043JIA_links.txt"      "/home/merve/Downloads/h3k4me1_ms_cd4_ENCSR093VUP_links.txt"      "/home/merve/Downloads/h3k4me1_ms_cd4_ENCSR124IGC_links.txt"      "/home/merve/Downloads/h3k4me1_ms_cd4_ENCSR315MYP_links.txt"      "/home/merve/Downloads/h3k4me1_ms_cd4_ENCSR458QEY_links.txt"      "/home/merve/Downloads/h3k4me1_ms_cd4_ENCSR485FBT_links.txt"      "/home/merve/Downloads/h3k4me1_ms_cd4_ENCSR641ZFV_links.txt"      "/home/merve/Downloads/h3k4me1_ms_cd4_ENCSR687CQX_links.txt"      "/home/merve/Downloads/h3k4me1_ms_cd8_ENCSR231XAP_links.txt"      "/home/merve/Downloads/h3k4me1_ms_cd8_ENCSR572XTB_links.txt"      "/home/merve/Downloads/h3k4me1_ms_cd8_ENCSR788TEF_links.txt"      "/home/merve/Downloads/h3k4me1_ms_cd8_ENCSR815YZL_links.txt"      "/home/merve/Downloads/h3k4me1_ms_cd8_ENCSR861FEC_links.txt"      "/home/merve/Downloads/h3k4me1_ms_cd8_ENCSR940PHE_links.txt"      "/home/merve/Downloads/h3k4me3_ms_cd4_ENCSR180NCM_links.txt"      "/home/merve/Downloads/h3k4me3_ms_cd4_ENCSR341QLC_links.txt"      "/home/merve/Downloads/h3k4me3_ms_cd4_ENCSR482TGI_links.txt"      "/home/merve/Downloads/h3k4me3_ms_cd4_ENCSR486XJK_links.txt"      "/home/merve/Downloads/h3k4me3_ms_cd4_ENCSR496LKR_links.txt"      "/home/merve/Downloads/h3k4me3_ms_cd4_ENCSR603LTN_links.txt"      "/home/merve/Downloads/h3k4me3_ms_cd4_ENCSR802MXQ_links.txt"      "/home/merve/Downloads/h3k4me3_ms_cd4_ENCSR878YHM_links.txt"      "/home/merve/Downloads/h3k4me3_ms_cd4_ENCSR954ZLD_links.txt"      "/home/merve/Downloads/h3k4me3_ms_cd8_ENCSR231ZZH_links.txt"      "/home/merve/Downloads/h3k4me3_ms_cd8_ENCSR278QHR_links.txt"      "/home/merve/Downloads/h3k4me3_ms_cd8_ENCSR516CKJ_links.txt"      "/home/merve/Downloads/h3k4me3_ms_cd8_ENCSR535YYH_links.txt"      "/home/merve/Downloads/h3k4me3_ms_cd8_ENCSR741XAE_links.txt"      "/home/merve/Downloads/h3k4me3_ms_cd8_ENCSR848XJL_links.txt"      "/home/merve/Downloads/h3k9me3_ms_cd4_ENCSR057IZD_links.txt"      "/home/merve/Downloads/h3k9me3_ms_cd4_ENCSR550DPT_links.txt"      "/home/merve/Downloads/h3k9me3_ms_cd4_ENCSR677OEF_links.txt"      "/home/merve/Downloads/h3k9me3_ms_cd4_ENCSR729ZXH_links.txt"      "/home/merve/Downloads/h3k9me3_ms_cd4_ENCSR851RJV_links.txt"      "/home/merve/Downloads/h3k9me3_ms_cd4_ENCSR919DFZ_links.txt"      "/home/merve/Downloads/h3k9me3_ms_cd4_ENCSR953STZ_links.txt"      "/home/merve/Downloads/h3k9me3_ms_cd4_ENCSR959VZU_links.txt"      "/home/merve/Downloads/h3k9me3_ms_cd8_ENCSR101USF_links.txt"      "/home/merve/Downloads/h3k9me3_ms_cd8_ENCSR354GNT_links.txt"      "/home/merve/Downloads/h3k9me3_ms_cd8_ENCSR377QYB_links.txt"      "/home/merve/Downloads/h3k9me3_ms_cd8_ENCSR733LCG_links.txt"      "/home/merve/Downloads/h3k9me3_ms_cd8_ENCSR980KTW_links.txt"      "/home/merve/Downloads/h3k27ac_ms_cd4_ENCSR200SSJ_links.txt"      "/home/merve/Downloads/h3k27ac_ms_cd4_ENCSR322MTA_links.txt"      "/home/merve/Downloads/h3k27ac_ms_cd4_ENCSR331WMS_links.txt"      "/home/merve/Downloads/h3k27ac_ms_cd4_ENCSR350UKV_links.txt"      "/home/merve/Downloads/h3k27ac_ms_cd4_ENCSR474PYR_links.txt"      "/home/merve/Downloads/h3k27ac_ms_cd4_ENCSR520QDR_links.txt"      "/home/merve/Downloads/h3k27ac_ms_cd4_ENCSR540XNK_links.txt"      "/home/merve/Downloads/h3k27ac_ms_cd4_ENCSR705VSO_links.txt"      "/home/merve/Downloads/h3k27ac_ms_cd4_ENCSR832UMM_links.txt"      "/home/merve/Downloads/h3k27ac_ms_cd8_ENCSR078ATS_links.txt"      "/home/merve/Downloads/h3k27ac_ms_cd8_ENCSR348YRH_links.txt"      "/home/merve/Downloads/h3k27ac_ms_cd8_ENCSR458TOW_links.txt"      "/home/merve/Downloads/h3k27ac_ms_cd8_ENCSR476IPR_links.txt"      "/home/merve/Downloads/h3k27ac_ms_cd8_ENCSR787HDF_links.txt"      "/home/merve/Downloads/h3k27ac_ms_cd8_ENCSR923JIB_links.txt"      "/home/merve/Downloads/h3k27me3_ms_nk_ENCSR469QVG_links.txt"      "/home/merve/Downloads/h3k27me3_ms_nk_ENCSR565WDW_links.txt"      "/home/merve/Downloads/h3k36me3_ms_nk_ENCSR158VSE_links.txt"      "/home/merve/Downloads/h3k36me3_ms_nk_ENCSR245KON_links.txt"      "/home/merve/Downloads/h3k36me3_ms_nk_ENCSR530YDY_links.txt"      "/home/merve/Downloads/h3k36me_ms_cd4_ENCSR532PXR_links.txt"      "/home/merve/Downloads/h3k27me3_ms_cd4_ENCSR277XYX_links.txt"      "/home/merve/Downloads/h3k27me3_ms_cd4_ENCSR526TNC_links.txt"      "/home/merve/Downloads/h3k27me3_ms_cd4_ENCSR592EKF_links.txt"      "/home/merve/Downloads/h3k27me3_ms_cd4_ENCSR613UFD_links.txt"      "/home/merve/Downloads/h3k27me3_ms_cd4_ENCSR740SDR_links.txt"      "/home/merve/Downloads/h3k27me3_ms_cd4_ENCSR779JLY_links.txt"      "/home/merve/Downloads/h3k27me3_ms_cd4_ENCSR993CTA_links.txt"      "/home/merve/Downloads/h3k27me3_ms_cd8_ENCSR116FVG_links.txt"      "/home/merve/Downloads/h3k27me3_ms_cd8_ENCSR122JCM_links.txt"      "/home/merve/Downloads/h3k27me3_ms_cd8_ENCSR216ZVA_links.txt"      "/home/merve/Downloads/h3k27me3_ms_cd8_ENCSR284IKS_links.txt"      "/home/merve/Downloads/h3k27me3_ms_cd8_ENCSR385BOZ_links.txt"      "/home/merve/Downloads/h3k27me3_ms_cd8_ENCSR521SFR_links.txt"      "/home/merve/Downloads/h3k36me3_ms_cd4_ENCSR276NGH_links.txt"      "/home/merve/Downloads/h3k36me3_ms_cd4_ENCSR330CQU_links.txt"      "/home/merve/Downloads/h3k36me3_ms_cd4_ENCSR482VIB_links.txt"      "/home/merve/Downloads/h3k36me3_ms_cd4_ENCSR785PKM_links.txt"      "/home/merve/Downloads/h3k36me3_ms_cd4_ENCSR865FTW_links.txt"      "/home/merve/Downloads/h3k36me3_ms_cd4_ENCSR898VJE_links.txt"      "/home/merve/Downloads/h3k36me3_ms_cd8_ENCSR239OWL_links.txt"      "/home/merve/Downloads/h3k36me3_ms_cd8_ENCSR435MSB_links.txt"      "/home/merve/Downloads/h3k36me3_ms_cd8_ENCSR631VIW_links.txt"      "/home/merve/Downloads/h3k36me3_ms_cd8_ENCSR652WFO_links.txt"      "/home/merve/Downloads/h3k36me3_ms_cd8_ENCSR757FGN_links.txt"      "/home/merve/Downloads/h3k4me1_normal_b_ENCSR156BXM_links.txt"      "/home/merve/Downloads/h3k4me3_normal_b_ENCSR791CAF_links.txt"      "/home/merve/Downloads/h3k9me3_normal_b_ENCSR445LTM_links.txt"      "/home/merve/Downloads/h3k27ac_normal_b_ENCSR685KZA_links.txt"      "/home/merve/Downloads/h3k4me1_normal_nk_ENCSR277YKG_links.txt"      "/home/merve/Downloads/h3k4me3_normal_nk_ENCSR394JFQ_links.txt"      "/home/merve/Downloads/h3k9me3_normal_nk_ENCSR025UNZ_links.txt"      "/home/merve/Downloads/h3k27ac_normal_nk_ENCSR977FMZ_links.txt"      "/home/merve/Downloads/h3k27me3_normal_b_ENCSR589LHR_links.txt"      "/home/merve/Downloads/h3k36me3_normal_b_ENCSR831AXK_links.txt"      "/home/merve/Downloads/h3k4me1_normal_cd4_ENCSR102SOR_links.txt"      "/home/merve/Downloads/h3k4me1_normal_cd8_ENCSR217SHH_links.txt"      "/home/merve/Downloads/h3k4me3_normal_cd4_ENCSR537KJA_links.txt"      "/home/merve/Downloads/h3k4me3_normal_cd8_ENCSR123ZAT_links.txt"      "/home/merve/Downloads/h3k9me3_normal_cd4_ENCSR433EWI_links.txt"      "/home/merve/Downloads/h3k9me3_normal_cd8_ENCSR294HTM_links.txt"      "/home/merve/Downloads/h3k27ac_normal_cd4_ENCSR819NCZ_links.txt"      "/home/merve/Downloads/h3k27ac_normal_cd8_ENCSR976RWL_links.txt"      "/home/merve/Downloads/h3k27me3_normal_nk_ENCSR639NIG_links.txt"      "/home/merve/Downloads/h3k36me3_normal_nk_ENCSR056GJY_links.txt"      "/home/merve/Downloads/h3k27me3_normal_cd4_ENCSR068YVZ_links.txt"      "/home/merve/Downloads/h3k27me3_normal_cd8_ENCSR720QRX_links.txt"      "/home/merve/Downloads/h3k36me3_normal_cd4_ENCSR864OKB_links.txt"      "/home/merve/Downloads/h3k36me3_normal_cd8_ENCSR303SQG_links.txt"      "/home/merve/Downloads/h3k27me3_normal_cd4_ENCSR002UMT_links.txt"      "/home/merve/Downloads/h3k4me3_normal_cd4_ENCSR935ELX_links.txt")
 output_file="merged_text.txt"
 cat "${files_to_merge[@]}" > "/home/merve/Downloads/$output_file"            
 echo "Merged files into: $output_file"
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -212,7 +212,7 @@ for sample_dir in "$input_dir"/*; do
   fi
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -273,7 +273,7 @@ for sample_dir in "$input_dir"/*; do
   fi
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -334,7 +334,7 @@ for sample_dir in "$input_dir"/*; do
   fi
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -395,7 +395,7 @@ for sample_dir in "$input_dir"/*; do
   fi
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -454,7 +454,7 @@ for sample_dir in "$input_dir"/*; do
   fi
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -513,7 +513,7 @@ for sample_dir in "$input_dir"/*; do
   fi
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -572,7 +572,7 @@ for sample_dir in "$input_dir"/*; do
   fi
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -631,7 +631,7 @@ for sample_dir in "$input_dir"/*; do
   fi
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -690,7 +690,7 @@ for sample_dir in "$input_dir"/*; do
   fi
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -752,7 +752,7 @@ done
 export PATH=$PATH:/home/merve/apps/hisat2-2.1
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=star_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -811,7 +811,7 @@ for sample_id in "${sample_ids[@]}"; do
   done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -837,11 +837,11 @@ for substrate_id in "${substrate_ids[@]}"; do
 done
 
 
-echo "DONE!"
+echo "DONE!""""
 
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -865,9 +865,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -891,9 +891,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -917,9 +917,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -943,9 +943,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -969,9 +969,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -995,9 +995,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1021,9 +1021,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1047,9 +1047,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1073,9 +1073,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1099,9 +1099,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1125,9 +1125,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1151,9 +1151,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1177,9 +1177,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1203,9 +1203,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1229,9 +1229,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1255,9 +1255,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1281,9 +1281,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1307,9 +1307,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1333,9 +1333,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1359,9 +1359,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1385,9 +1385,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1411,9 +1411,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1437,9 +1437,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1463,9 +1463,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1489,9 +1489,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1515,9 +1515,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1541,9 +1541,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1567,9 +1567,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1593,9 +1593,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1619,9 +1619,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1645,9 +1645,9 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1674,9 +1674,9 @@ for sample_id in "${sample_ids[@]}"; do
 done
 
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1700,10 +1700,10 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1729,11 +1729,11 @@ for substrate_id in "${substrate_ids[@]}"; do
 done
 
 
-echo "DONE!"
+echo "DONE!""""
 
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1793,7 +1793,7 @@ for sample_dir in "$input_dir"/*; do
 done
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=sam_to_bam
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1833,9 +1833,9 @@ for subdir in $input_dir/*; do
   fi
 done
 
-echo "Done!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=star_alignment
 SBATCH --nodes=1
 SBATCH --account=users
@@ -1876,7 +1876,7 @@ for sample_dir in "$input_dir"/*; do
   fi
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=move
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2048,7 +2048,7 @@ unset __conda_setup
  <<< conda initialize <<<
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=star_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2095,7 +2095,7 @@ fi
 
 echo "STAR genome index created successfully in: $star_index_dir"
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bowtie2_alignment
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2143,7 +2143,7 @@ done
 
 echo "All samples processed!"
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=star_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2199,7 +2199,7 @@ done
  BWA Bwasw 
 bwa bwasw index_prefix input_reads.fasta -t $SLURM_NTASKS_PER_NODE > bwa_bwasw_alignments.sam
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2256,7 +2256,7 @@ for sample_dir in "$input_dir"/*; do
 done
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2323,7 +2323,7 @@ done
 
 echo "BWA alignment completed! Both SAM and BAM files generated."
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2391,7 +2391,7 @@ done
 
 echo "BWA alignment completed! Both SAM and BAM files generated."
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2411,7 +2411,7 @@ module load fastqc-0.11.7-gcc-9.2.0-nsjzjof
  Run FastQC on .fastq files in input directory and write output to output directory
 fastqc --outdir "$output_directory" "$input_directory"/*.fastq -threads 8
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=chipseq_pipeline
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2425,7 +2425,7 @@ cd /cta/users/merve.kaftancioglu/alternative_scenario/nf-core/chipseq-master
 
 nextflow run main.nf -profile singularity --outdir /output
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2450,7 +2450,7 @@ for substrate_id in "${substrate_ids[@]}"; do
 done
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=multiQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2471,7 +2471,7 @@ find "$main_directory" -type f -exec cp {} "$merge_directory" \;
 
 echo "All files merged into: $merge_directory"
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=star_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2521,7 +2521,7 @@ fi
 
 echo "STAR genome index created successfully in: $star_index_dir"
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=nf-core
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2571,7 +2571,7 @@ for sample_dir in */ ; do
   cd ..
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=picard
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2648,7 +2648,7 @@ $re_mark_dups_cmd
  **Optional Step: Clean up temporary files (if used)**
  rm -rf $TEMP_DIR   Uncomment to remove temporary files
 
-echo "Done!"
+echo "DONE!""""
 
  **Step 3: Re-mark duplicates on merged BAMs (optional)**
 
@@ -2657,10 +2657,10 @@ echo "Done!"
  **Optional Cleanup (if using temporary directory)**
  rm -rf $TEMP_DIR   Uncomment to remove temporary files
 
-echo "Done!"
+echo "DONE!""""
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bowtie2_alignment
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2702,7 +2702,7 @@ for input_fastq in $(find "${input_dir}" -type f -name "*.fastq.gz" ! -name "*.*
    Note the change: -U $output_sam specifies the output SAM file
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bowtie2_alignment
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2744,7 +2744,7 @@ for input_fastq in "${input_dir}"/*.fastq.gz; do
   bowtie2 -x /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index -U "$input_fastq" -S "$output_bam"
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bowtie2_alignment
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2786,7 +2786,7 @@ for input_fastq in $(find "${input_dir}" -type f -name "*.fastq.gz" ! -name "*.*
    bowtie2 -x /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index -U "$input_fastq" -S "$output_bam"
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bowtie2_alignment
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2827,7 +2827,7 @@ for input_fastq in $(find "${input_dir}" -type f -name "*.fastq.gz" ! -name "*.*
   bowtie2 --threads 16 -p 16 --trim3 30 -x /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index -U $input_fastq -S $output_sam
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bowtie2_longread_alignment
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2924,7 +2924,7 @@ PAUSE
 
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -2983,7 +2983,7 @@ for sample_dir in "$input_dir"/*; do
   fi
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3014,7 +3014,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3045,7 +3045,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3076,7 +3076,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3107,7 +3107,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3138,7 +3138,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3169,7 +3169,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3200,7 +3200,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3231,7 +3231,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3257,11 +3257,11 @@ for substrate_id in "${substrate_ids[@]}"; do
 done
 
 
-echo "DONE!"
+echo "DONE!""""
 
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=conversion
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3290,7 +3290,7 @@ done
 
 echo "All fastq files converted to fasta!"
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3321,7 +3321,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3352,7 +3352,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3383,7 +3383,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3414,7 +3414,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3445,7 +3445,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3476,7 +3476,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3507,7 +3507,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3538,7 +3538,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3569,7 +3569,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3600,7 +3600,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3631,7 +3631,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3662,7 +3662,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3689,9 +3689,9 @@ for sample_id in "${sample_ids[@]}"; do
 done
 
 
-echo "DONE!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3715,10 +3715,10 @@ for sample_id in "${sample_ids[@]}"; do
   echo "Finished ${sample_id}"
 done
 
-echo "DONE!"
+echo "DONE!""""
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3744,11 +3744,11 @@ for substrate_id in "${substrate_ids[@]}"; do
 done
 
 
-echo "DONE!"
+echo "DONE!""""
 
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3808,7 +3808,7 @@ for sample_dir in "$input_dir"/*; do
 done
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=sam_to_bam
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3848,9 +3848,9 @@ for subdir in $input_dir/*; do
   fi
 done
 
-echo "Done!"
+echo "DONE!""""
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=star_alignment
 SBATCH --nodes=1
 SBATCH --account=users
@@ -3891,7 +3891,7 @@ for sample_dir in "$input_dir"/*; do
   fi
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=move
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4063,7 +4063,7 @@ unset __conda_setup
  <<< conda initialize <<<
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=star_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4110,7 +4110,7 @@ fi
 
 echo "STAR genome index created successfully in: $star_index_dir"
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bowtie2_alignment
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4158,7 +4158,7 @@ done
 
 echo "All samples processed!"
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=star_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4214,7 +4214,7 @@ done
  BWA Bwasw 
 bwa bwasw index_prefix input_reads.fasta -t $SLURM_NTASKS_PER_NODE > bwa_bwasw_alignments.sam
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4271,7 +4271,7 @@ for sample_dir in "$input_dir"/*; do
 done
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4338,7 +4338,7 @@ done
 
 echo "BWA alignment completed! Both SAM and BAM files generated."
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4406,7 +4406,7 @@ done
 
 echo "BWA alignment completed! Both SAM and BAM files generated."
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4426,7 +4426,7 @@ module load fastqc-0.11.7-gcc-9.2.0-nsjzjof
  Run FastQC on .fastq files in input directory and write output to output directory
 fastqc --outdir "$output_directory" "$input_directory"/*.fastq -threads 8
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=chipseq_pipeline
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4440,7 +4440,7 @@ cd /cta/users/merve.kaftancioglu/alternative_scenario/nf-core/chipseq-master
 
 nextflow run main.nf -profile singularity --outdir /output
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4465,7 +4465,7 @@ for substrate_id in "${substrate_ids[@]}"; do
 done
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=multiQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4486,7 +4486,7 @@ find "$main_directory" -type f -exec cp {} "$merge_directory" \;
 
 echo "All files merged into: $merge_directory"
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=star_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4536,7 +4536,7 @@ fi
 
 echo "STAR genome index created successfully in: $star_index_dir"
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=nf-core
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4586,7 +4586,7 @@ for sample_dir in */ ; do
   cd ..
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=picard
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4663,7 +4663,7 @@ $re_mark_dups_cmd
  **Optional Step: Clean up temporary files (if used)**
  rm -rf $TEMP_DIR   Uncomment to remove temporary files
 
-echo "Done!"
+echo "DONE!""""
 
  **Step 3: Re-mark duplicates on merged BAMs (optional)**
 
@@ -4672,10 +4672,10 @@ echo "Done!"
  **Optional Cleanup (if using temporary directory)**
  rm -rf $TEMP_DIR   Uncomment to remove temporary files
 
-echo "Done!"
+echo "DONE!""""
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bowtie2_alignment
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4717,7 +4717,7 @@ for input_fastq in $(find "${input_dir}" -type f -name "*.fastq.gz" ! -name "*.*
    Note the change: -U $output_sam specifies the output SAM file
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bowtie2_alignment
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4759,7 +4759,7 @@ for input_fastq in "${input_dir}"/*.fastq.gz; do
   bowtie2 -x /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index -U "$input_fastq" -S "$output_bam"
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bowtie2_alignment
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4801,7 +4801,7 @@ for input_fastq in $(find "${input_dir}" -type f -name "*.fastq.gz" ! -name "*.*
    bowtie2 -x /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index -U "$input_fastq" -S "$output_bam"
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bowtie2_alignment
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4842,7 +4842,7 @@ for input_fastq in $(find "${input_dir}" -type f -name "*.fastq.gz" ! -name "*.*
   bowtie2 --threads 16 -p 16 --trim3 30 -x /cta/users/merve.kaftancioglu/alternative_scenario/bowtie2_as/index -U $input_fastq -S $output_sam
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bowtie2_longread_alignment
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4939,7 +4939,7 @@ PAUSE
 
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -4998,7 +4998,7 @@ for sample_dir in "$input_dir"/*; do
   fi
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5029,7 +5029,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5060,7 +5060,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5091,7 +5091,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5122,7 +5122,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5153,7 +5153,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5184,7 +5184,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5215,7 +5215,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5246,7 +5246,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5272,11 +5272,11 @@ for substrate_id in "${substrate_ids[@]}"; do
 done
 
 
-echo "DONE!"
+echo "DONE!""""
 
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=conversion
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5305,7 +5305,7 @@ done
 
 echo "All fastq files converted to fasta!"
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5336,7 +5336,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5367,7 +5367,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5398,7 +5398,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5429,7 +5429,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5460,7 +5460,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5491,7 +5491,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5522,7 +5522,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5553,7 +5553,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5584,7 +5584,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5615,7 +5615,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5646,7 +5646,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5677,7 +5677,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=download_processed
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5707,7 +5707,7 @@ wget -P "processed_ENCSR350UKV" https://www.encodeproject.org/files/ENCFF718ZSS/
 wget -P "processed_ENCSR350UKV" https://www.encodeproject.org/files/ENCFF979YMP/@@download/ENCFF979YMP.bigWig
 wget -P "processed_ENCSR350UKV" https://www.encodeproject.org/files/ENCFF329MIW/@@download/ENCFF329MIW.bed.gz
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5738,7 +5738,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5769,7 +5769,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=download_processed
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5957,7 +5957,7 @@ ENCSR983MKX="/cta/users/merve.kaftancioglu/alternative_scenario/processed_seqs/p
 ENCSR987OPY="/cta/users/merve.kaftancioglu/alternative_scenario/processed_seqs/processed_ENCSR987OPY"
 ENCSR993CTA="/cta/users/merve.kaftancioglu/alternative_scenario/processed_seqs/processed_ENCSR993CTA"
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -5988,7 +5988,7 @@ for sample_id in "${sample_ids[@]}"; do
     done
 done
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trimmomatic_single
 SBATCH --nodes=1
 SBATCH --account=users
@@ -6045,7 +6045,7 @@ then
     docker push ${PICARD_CLOUD_TAG}
 fi
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -6067,7 +6067,7 @@ fastqc --outdir "$output_directory" "$input_directory"/*.fastq -threads 8
 
 
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=fastQC
 SBATCH --nodes=1
 SBATCH --account=users
@@ -6091,7 +6091,7 @@ cd "$output_directory" || exit
 wget -nc ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR001/SRR001666/SRR001666_2.fastq.gz
 wget -nc ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR001/SRR001666/SRR001666_1.fastq.gz
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa_align
 SBATCH --nodes=1
 SBATCH --account=users
@@ -6110,7 +6110,7 @@ module load bwa-0.7.17-gcc-9.2.0-xwkclqy
 bwa mem -t 8 index/Agy99.fasta P7741_R1.fastq.gz P7741_R2.fastq.gz > output.sam
 
  -t: threads
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=bwa
 SBATCH --nodes=1
 SBATCH --account=users
@@ -6146,7 +6146,7 @@ fi
 bash run.bash --no-rebuild
 $GOTOOLDIR/dist banner   print build info
 
-!/bin/bash
+"""!/bin/bash
 SBATCH --job-name=trim
 SBATCH --nodes=1
 SBATCH --account=users
