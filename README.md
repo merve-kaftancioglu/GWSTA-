@@ -69,7 +69,7 @@ The versions of the tools that are used:
 
 System: Linux Ubuntu jammy release cran40
 
-FastQC v 0.11.7
+Tools: FastQC v 0.11.7
 
 MultiQC (miniconda v. 22.9)
 
