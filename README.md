@@ -15,7 +15,7 @@ Retromers are protein complexes which are found in eukaryotic cells and they are
 
 Here, the aim of the project is to enlighten the possible epigenetic changes of immune cells in MS, with a particular focus on retromer proteins, which is hoped to bring a new angle to investigate this disease. The ENCODE data that has been gathered actually belongs to a research (NIH Grant No: UM1HG009390) which was conducted by the members of Bradley Bernstein's lab in Broad Institute. For this study, Mint ChIP Sequencing has been preferred since it enables to barcode multiple samples together, which has a definite advantage over regular ChIP-Seq considering its large scope. Among many immune cell samples, CD4+ T cells, CD8+ T cells, and B cells are chosen for this study. Also, to see its unique role among the innate components, NK cells are also included. Histone modifications like H3K27ac, H3K27me3, H3K36me3, H3K4me1, H3K4me3, and H3K9me3 are decided to be the scope of the modifications. A comparison of these histone modifications in MS patients versus healthy subjects is expected to reveal significant differences and to provide compelling evidence for the involvement of epigenetic dynamics in the development of this disease (Abascal et al., 2020; Schreiber et al., 2023; Walter et al., 2019).
 
-## Results:
+## Results
 
 Computational analysis for this project was limited due to time constraints and technical issues. Consequently, conclusive results haven't been generated in a general context. However, the stepwise progress is presented here (A). Note that, to expedite the pipeline, samples were divided into smaller tasks based on processing time and run in parallel. 
 
@@ -35,13 +35,21 @@ IGV visualization: Again, the size of the sample data and the time limitation be
  
 ![Figure 1: General idea of the project](https://github.com/merve-kaftancioglu/GWSTA-/assets/160722990/96af95ac-678d-4792-91e4-0e5a9c2abe4a)
 
+Figure 1: General idea of the project
+
 ![Figure 2: Pipeline representation (modified from nf-core chipseq page)](https://github.com/merve-kaftancioglu/GWSTA-/assets/160722990/db916ca4-df60-4473-b4f2-a9875d6b2595)
+
+Figure 2: Pipeline representation (modified from nf-core chipseq page)
  
 ![Figure 3: Used software and data list from the cluster](https://github.com/merve-kaftancioglu/GWSTA-/assets/160722990/b786d462-fcbe-470d-beaf-d94f158fa0a7)
 
+Figure 3: Used software and data list from the cluster
+
 ![Figure 4: Total adapter content plot from MultiQC](https://github.com/merve-kaftancioglu/GWSTA-/assets/160722990/9416f711-a63f-404c-9c30-fd76d393f129)
 
-## Discussion:
+Figure 4: Total adapter content plot from MultiQC
+
+## Discussion
 
 The development of the project process was a quite informative, specifically in terms of the nature of bioinformatic analyses, computational experience, and inevitable consequences of human factors. During the research process many online platforms were used, and various researchers guided and suggested different approaches. That’s why, after the end of semester, full complication of the project is planned, and noted suggestions are also hoped to contribute overall understanding of the pipelines and tools. For example, footprinting analysis on main components of retromer proteins like VPS35 (Ch. 16-11.2) and VPS26 (Ch. 10-22.1) can be further investigated for their transcription factor bindings via HOMER. Genrich was another tool which was highly recommended for peak detections. From the readings, one can gather that Galaxy is a great tool definitely worth to discover. 
 
@@ -54,7 +62,8 @@ Although troubleshooting processes turned into very informative lessons, they ca
 Aside from time constraints and technical issues that prevented conclusive results, outcomes of this project can be states as: successful data quality evaluation using FastQC and MultiQC, understanding building different script structures for BWA, Bowtie2, STAR, and gaining more experience with containerization tools. 
 
 
-## Materials & Methodology: 
+## Materials & Methodology
+
 To keep an organized structure for the project data, each and every sample was labelled, and they are kept separately in folders, thus, for loops were utilized for input and output directories. Different numbers of scripts were created for parallel run based on the process speed of the tool. For example, for FastQC 31 batches were made, compared to BWA which required only 5. 
 The versions of the tools that are used: 
 System: Linux Ubuntu jammy release cran40
@@ -145,6 +154,6 @@ Yoshida, T. M., Wang, A., & Hafler, D. A. (2022). Basic principles of neuroimmun
 You, Z., Wang, L., He, H., Wu, Z., Zhang, X., Xue, S., Xu, P., Hong, Y., Xiong, M., Wei, W., & Chen, Y. (2023). Mapping of clonal lineages across developmental stages in human neural differentiation. Cell Stem Cell, 30(4), 473-487.e9. https://doi.org/10.1016/j.stem.2023.02.007
 YouTube. (2024, April 25). Biyoenformatik Analizlerde Tekrarlanabilirlik: “nextflow ve NF-core” workshop’u - phd. Kübra Narcı. YouTube. https://www.youtube.com/watch?v=AqNmIkoQrNo
 Zhang, F., Aschenbrenner, D., Yoo, J. Y., & Zuo, T. (2022). The gut mycobiome in health, disease, and clinical applications in association with the gut bacterial microbiome assembly. In The Lancet Microbe (Vol. 3, Issue 12, pp. e969–e983). Elsevier Ltd. https://doi.org/10.1016/S2666-5247(22)00203-8
-Zhang, X., Liu, T., Hou, X., Zhou, Z., Zhang, F., Ma, H., Wu, X., & Jiang, J. (2023). Exosomes secreted by mesenchymal stem cells delay brain aging by upregulating SIRT1 expression. Scientific Reports, 13(1). https://doi.org/10.1038/s41598-023-40543-5
+Zhang, X., Liu, T., Hou, X., Zhou, Z., Zhang, F., Ma, H., Wu, X., & Jiang, J. (2023). Exosomes secreted by mesenchymal stem cells delay brain aging b upregulating SIRT1 expression. Scientific Reports, 13(1). https://doi.org/10.1038/s41598-023-40543-5
 Zierfuss, B., Larochelle, C., & Prat, A. (2024). Blood–brain barrier dysfunction in multiple sclerosis: causes, consequences, and potential effects of therapies. In The Lancet Neurology (Vol. 23, Issue 1, pp. 95–109). Elsevier Ltd. https://doi.org/10.1016/S1474-4422(23)00377-0
  
