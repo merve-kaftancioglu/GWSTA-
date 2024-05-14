@@ -1174,3 +1174,10 @@ module spider singularity/3.8.4
 snakemake-5.23.0-gcc-9.2.0-awyfooy
 
 ```
+
+### IGV (used locally, coulndn't generate image for hours due to size, thinking about trying UCSC Genome Browser)
+
+![Screenshot from 2024-05-14 18-41-38](https://github.com/merve-kaftancioglu/GWSTA-/assets/160722990/05983e3b-ec8c-4302-ab81-dcba898bd5cc)
+
+Checked for retromer component VSP35 on B cell h3k4me1 modification differences of a healthy and MS patient 
+
