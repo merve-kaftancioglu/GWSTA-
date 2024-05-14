@@ -1,10 +1,10 @@
 # GWSTA- Project Report
 
-#Epigenetic differences of Retromer proteins for immune cells in Multiple Sclerosis
+# Epigenetic differences of Retromer proteins for immune cells in Multiple Sclerosis
 
 ## Merve Kaftancioglu
 
-##Introduction
+## Introduction
 
 This project investigates potential epigenetic alterations in immune cells of Multiple Sclerosis (MS) patients, specifically focusing on recycling proteins called retromers in CD4+ T cells, CD8+ T cells, B cells, and NK cells.
 As the most common chronic inflammatory disease of the central nervous system (CNS), it is estimated that MS is affecting over 2 million people globally. Although its cause is likely a complex combination of genetic and environmental factors, it is certainly known that the immunopathological nature of the disease triggers the neural degeneration. Adaptive immune system components, T and B cells, attack the myelin sheath that covers nerve fibers and thus lead to various neurological symptoms: Specific types of T cells, particularly Th1 and Th17, along with CD8+ and regulatory T cells create an unusual immune response. On the other hand, B cells and their antibodies are also involved in further damage in the inflammatory process (Filippi et al., 2018a; Haki et al., 2024; Jakimovski et al., 2024a; Pomales, 1990; Reich et al., 2018).
