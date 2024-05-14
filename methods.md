@@ -227,7 +227,7 @@ done
 ```
 <br>
 
-### CutAdapt (without bash):
+### CutAdapt (didn't work):
 
 ```
 #!/bin/bash
