@@ -1,4 +1,4 @@
-## Bash Scripts:
+## Bash Scripts
 ### FastQC (samples divided into 31 files): 
 
 ```
@@ -31,6 +31,14 @@ echo "DONE!"
 <br>
 
 ### MultiQC (without bash):
+
+```
+module load miniconda/22.9
+eval "$(conda shell.bash hook)"
+conda activate multiqc
+multiqc
+```
+<br>
 
 ```
 multiqc -o /cta/users/merve.kaftancioglu/alternative_scenario/post-trim_fastQC_as/output_merged_all /cta/users/merve.kaftancioglu/alternative_scenario/post-trim_fastQC_as/output_merged_all/*_fastqc.zip
@@ -725,5 +733,444 @@ echo "All samples processed!"
 
 <br>
 
-### BWA:
+### BWA (divided into 6 files):
 
+
+```
+
+#!/bin/bash
+#SBATCH --job-name=bwa_single
+#SBATCH --nodes=1
+#SBATCH --account=users
+#SBATCH --qos=cuda
+#SBATCH --partition=cuda
+#SBATCH --cpus-per-task=16
+#SBATCH -o /cta/users/merve.kaftancioglu/alternative_scenario/bwa_as/out-err/%x-%j-slurm.out
+#SBATCH -e /cta/users/merve.kaftancioglu/alternative_scenario/bwa_as/out-err/%x-%j-slurm.err
+
+# Load BWA module
+module load bwa-0.7.17-gcc-9.2.0-xwkclqy
+
+# Define directories (consider adjusting paths)
+input_dir="/cta/users/merve.kaftancioglu/alternative_scenario/trimmomatic_as/output"
+output_dir="/cta/users/merve.kaftancioglu/alternative_scenario/bwa_as/output"
+reference_genome="/cta/users/merve.kaftancioglu/alternative_scenario/bwa_as/reference/human_g1k_v37.fasta"
+
+# Check if BWA index exists
+if [ ! -f "$reference_genome.bwt" ]; then
+  echo "Error: BWA index not found. Please create the index using: bwa mem index $reference_genome"
+  exit 1
+fi
+
+# Define sample IDs (modify as needed)
+sample_ids=("h3k27ac_ms_b_ENCSR295QZX" "h3k27ac_ms_b_ENCSR538URI" "h3k27ac_ms_b_ENCSR617GMR" "h3k4me1_ms_b_ENCSR084FXT" "h3k4me1_ms_b_ENCSR480ITK" "h3k4me1_ms_b_ENCSR759DHN" "h3k4me1_ms_b_ENCSR900IAM" "h3k4me1_ms_b_ENCSR931JYC" "h3k4me3_ms_b_ENCSR260CRI" "h3k4me3_ms_b_ENCSR461QMZ" "h3k4me3_ms_b_ENCSR530AVK" "h3k4me3_ms_b_ENCSR713ZYF" "h3k4me3_ms_b_ENCSR923EGO" "h3k9me3_ms_b_ENCSR445DNH" "h3k9me3_ms_b_ENCSR486SZN" "h3k9me3_ms_b_ENCSR983MKX" "h3k27ac_ms_b_ENCSR364OIK" "h3k27ac_ms_b_ENCSR541PLO" "h3k36me3_ms_cd4_ENCSR471WZE" "h3k36me3_ms_cd4_ENCSR473TGK" "h3k4me1_ms_nk_ENCSR482UGV" "h3k4me1_ms_nk_ENCSR718LCI" "h3k4me1_ms_nk_ENCSR806HUT" "h3k4me3_ms_nk_ENCSR234BAD" "h3k4me3_ms_nk_ENCSR703TWY" "h3k4me3_ms_nk_ENCSR755ZGS" "h3k9me3_ms_nk_ENCSR061ATV" "h3k9me3_ms_nk_ENCSR611YIA" "h3k9me3_ms_nk_ENCSR667HUI" "h3k27ac_ms_nk_ENCSR246TTM" "h3k27ac_ms_nk_ENCSR469CFL" "h3k27ac_ms_nk_ENCSR746AIX" "h3k27me3_ms_b_ENCSR009ZRH" "h3k27me3_ms_b_ENCSR182NLA" "h3k27me3_ms_b_ENCSR272YVX" "h3k27me3_ms_b_ENCSR649FUX" "h3k27me3_ms_b_ENCSR842WWX" "h3k36me3_ms_b_ENCSR089VQL" "h3k36me3_ms_b_ENCSR119PSR" "h3k36me3_ms_b_ENCSR238WFK" "h3k36me3_ms_b_ENCSR987OPY" "h3k4me1_ms_cd4_ENCSR036YVP" "h3k4me1_ms_cd4_ENCSR043JIA" "h3k4me1_ms_cd4_ENCSR093VUP" "h3k4me1_ms_cd4_ENCSR124IGC" "h3k4me1_ms_cd4_ENCSR315MYP" "h3k4me1_ms_cd4_ENCSR458QEY" "h3k4me1_ms_cd4_ENCSR485FBT" "h3k4me1_ms_cd4_ENCSR641ZFV" "h3k4me1_ms_cd4_ENCSR687CQX" "h3k4me1_ms_cd8_ENCSR231XAP" "h3k4me1_ms_cd8_ENCSR572XTB" "h3k4me1_ms_cd8_ENCSR788TEF" "h3k4me1_ms_cd8_ENCSR815YZL" "h3k4me1_ms_cd8_ENCSR861FEC" "h3k4me1_ms_cd8_ENCSR940PHE" "h3k4me3_ms_cd4_ENCSR180NCM" "h3k4me3_ms_cd4_ENCSR341QLC" "h3k4me3_ms_cd4_ENCSR482TGI" "h3k4me3_ms_cd4_ENCSR486XJK" "h3k4me3_ms_cd4_ENCSR496LKR" "h3k4me3_ms_cd4_ENCSR603LTN" "h3k4me3_ms_cd4_ENCSR802MXQ" "h3k4me3_ms_cd4_ENCSR878YHM" "h3k4me3_ms_cd4_ENCSR954ZLD" "h3k4me3_ms_cd8_ENCSR231ZZH" "h3k4me3_ms_cd8_ENCSR278QHR" "h3k4me3_ms_cd8_ENCSR516CKJ" "h3k4me3_ms_cd8_ENCSR535YYH" "h3k4me3_ms_cd8_ENCSR741XAE" "h3k4me3_ms_cd8_ENCSR848XJL" "h3k9me3_ms_cd4_ENCSR057IZD" "h3k9me3_ms_cd4_ENCSR550DPT" "h3k9me3_ms_cd4_ENCSR677OEF" "h3k9me3_ms_cd4_ENCSR729ZXH" "h3k9me3_ms_cd4_ENCSR851RJV" "h3k9me3_ms_cd4_ENCSR919DFZ" "h3k9me3_ms_cd4_ENCSR953STZ" "h3k9me3_ms_cd4_ENCSR959VZU" "h3k9me3_ms_cd8_ENCSR101USF" "h3k9me3_ms_cd8_ENCSR354GNT" "h3k9me3_ms_cd8_ENCSR377QYB" "h3k9me3_ms_cd8_ENCSR733LCG" "h3k9me3_ms_cd8_ENCSR980KTW" "h3k27ac_ms_cd4_ENCSR200SSJ" "h3k27ac_ms_cd4_ENCSR322MTA" "h3k27ac_ms_cd4_ENCSR331WMS" "h3k27ac_ms_cd4_ENCSR350UKV" "h3k27ac_ms_cd4_ENCSR474PYR" "h3k27ac_ms_cd4_ENCSR520QDR" "h3k27ac_ms_cd4_ENCSR540XNK" "h3k27ac_ms_cd4_ENCSR705VSO" "h3k27ac_ms_cd4_ENCSR832UMM" "h3k27ac_ms_cd8_ENCSR078ATS" "h3k27ac_ms_cd8_ENCSR348YRH" "h3k27ac_ms_cd8_ENCSR458TOW" "h3k27ac_ms_cd8_ENCSR476IPR" "h3k27ac_ms_cd8_ENCSR787HDF" "h3k27ac_ms_cd8_ENCSR923JIB" "h3k27me3_ms_nk_ENCSR469QVG" "h3k27me3_ms_nk_ENCSR565WDW" "h3k36me3_ms_nk_ENCSR158VSE" "h3k36me3_ms_nk_ENCSR245KON" "h3k36me3_ms_nk_ENCSR530YDY" "h3k36me_ms_cd4_ENCSR532PXR" "h3k27me3_ms_cd4_ENCSR277XYX" "h3k27me3_ms_cd4_ENCSR526TNC" "h3k27me3_ms_cd4_ENCSR592EKF" "h3k27me3_ms_cd4_ENCSR613UFD" "h3k27me3_ms_cd4_ENCSR740SDR" "h3k27me3_ms_cd4_ENCSR779JLY" "h3k27me3_ms_cd4_ENCSR993CTA" "h3k27me3_ms_cd8_ENCSR116FVG" "h3k27me3_ms_cd8_ENCSR122JCM" "h3k27me3_ms_cd8_ENCSR216ZVA" "h3k27me3_ms_cd8_ENCSR284IKS" "h3k27me3_ms_cd8_ENCSR385BOZ" "h3k27me3_ms_cd8_ENCSR521SFR" "h3k36me3_ms_cd4_ENCSR276NGH" "h3k36me3_ms_cd4_ENCSR330CQU" "h3k36me3_ms_cd4_ENCSR482VIB" "h3k36me3_ms_cd4_ENCSR785PKM" "h3k36me3_ms_cd4_ENCSR865FTW" "h3k36me3_ms_cd4_ENCSR898VJE" "h3k36me3_ms_cd8_ENCSR239OWL" "h3k36me3_ms_cd8_ENCSR435MSB" "h3k36me3_ms_cd8_ENCSR631VIW" "h3k36me3_ms_cd8_ENCSR652WFO" "h3k36me3_ms_cd8_ENCSR757FGN" "h3k4me1_normal_b_ENCSR156BXM" "h3k4me3_normal_b_ENCSR791CAF" "h3k9me3_normal_b_ENCSR445LTM" "h3k27ac_normal_b_ENCSR685KZA" "h3k4me1_normal_nk_ENCSR277YKG" "h3k4me3_normal_nk_ENCSR394JFQ" "h3k9me3_normal_nk_ENCSR025UNZ" "h3k27ac_normal_nk_ENCSR977FMZ" "h3k27me3_normal_b_ENCSR589LHR" "h3k36me3_normal_b_ENCSR831AXK" "h3k4me1_normal_cd4_ENCSR102SOR" "h3k4me1_normal_cd8_ENCSR217SHH" "h3k4me3_normal_cd4_ENCSR537KJA" "h3k4me3_normal_cd8_ENCSR123ZAT" "h3k9me3_normal_cd4_ENCSR433EWI" "h3k9me3_normal_cd8_ENCSR294HTM" "h3k27ac_normal_cd4_ENCSR819NCZ" "h3k27ac_normal_cd8_ENCSR976RWL" "h3k27me3_normal_nk_ENCSR639NIG" "h3k36me3_normal_nk_ENCSR056GJY" "h3k27me3_normal_cd4_ENCSR068YVZ" "h3k27me3_normal_cd8_ENCSR720QRX" "h3k36me3_normal_cd4_ENCSR864OKB" "h3k36me3_normal_cd8_ENCSR303SQG" "h3k27me3_normal_cd4_ENCSR002UMT" "h3k4me3_normal_cd4_ENCSR935ELX")
+
+# Loop through all sample subdirectories
+for sample_dir in "$input_dir"/*; do
+  # Check if directory name matches any sample ID
+  if [[ " ${sample_ids[@]} " =~ " $(basename "$sample_dir") " ]]; then
+    echo "Processing sample: $(basename "$sample_dir")"
+
+    # Create output directory for the sample (if it doesn't exist)
+    mkdir -p "$output_dir/$(basename "$sample_dir")"
+
+    # Find FASTQ files within the sample directory
+    # Adjust the pattern below if your file names differ
+    fastq_files=( "$sample_dir"/*.fastq.gz )
+
+    # Check if any FASTQ files found
+    if [[ ${#fastq_files[@]} -eq 0 ]]; then
+      echo "Warning: No FASTQ files found in $sample_dir"
+      continue # Skip to next iteration if no FASTQ files
+    fi
+
+    # BWA mem command with paired-end or single-end handling
+    if [[ ${#fastq_files[@]} -eq 2 ]]; then
+      # Paired-end reads (assuming *_1.fastq.gz and *_2.fastq.gz naming)
+      bwa mem $reference_genome ${fastq_files[0]} ${fastq_files[1]} > "$output_dir/$(basename "$sample_dir").sam"
+    else
+      # Single-end read (assuming only one FASTQ file)
+      # Extract only the sample name from the directory path
+      sample_name=$(basename "$sample_dir" /)
+      bwa mem $reference_genome ${fastq_files[0]} > "$output_dir/$sample_name.sam"
+    fi
+  fi
+done
+
+```
+
+<br>
+
+### nf-core ChIP Seq (didn't work):
+
+(a)
+
+```
+
+#!/bin/bash
+#SBATCH --job-name=nf-core
+#SBATCH --nodes=1
+#SBATCH --account=users
+#SBATCH --qos=cuda
+#SBATCH --partition=cuda
+#SBATCH --cpus-per-task=16
+#SBATCH -o /cta/users/merve.kaftancioglu/alternative_scenario/processed_seqs/out-err/%x-%j-slurm.out
+#SBATCH -e /cta/users/merve.kaftancioglu/alternative_scenario/processed_seqs/out-err/%x-%j-slurm.err
+
+# Load necessary modules (if applicable for your cluster)
+module load docker
+
+# Specify the Docker image (replace with nf-core/chipseq version you downloaded)
+docker_image=nf-core/chipseq:latest
+
+# Navigate to the directory containing your Slurm script and pipeline files
+cd /cta/users/merve.kaftancioglu/alternative_scenario/processed_seqs/all_data
+
+# Create symbolic links for all fastq files in the current directory
+for file in *.fastq; do ln -s "$file" all_fastq_files; done
+
+# Run the nextflow command within the container
+docker run --rm -v /cta/users/merve.kaftancioglu/alternative_scenario/trimmomatic_as/output
+
+# Create a directory to hold symbolic links (soft links) to your fastq files (optional)
+# This step is optional, you can comment it out if you don't want to create a separate directory
+# mkdir all_fastq_files
+
+# Loop through all subdirectories under processed_seqs
+for sample_dir in */ ; do
+  # Navigate to the current subdirectory
+  cd "$sample_dir"
+
+  # Loop through all fastq.gz files in the current subdirectory
+  for file in *.fastq.gz; do
+    # Create a symbolic link (optional, uncomment if using the directory)
+    # ln -s "$file" ../all_fastq_files  # Uncomment if using all_fastq_files directory
+    
+    # Construct the full path to the fastq file (alternative to symbolic links)
+    full_fastq_path=$(pwd)/"$file"
+    
+    # You can echo the full path for verification (optional)
+    # echo "Found fastq: $full_fastq_path"
+  done
+  
+```
+
+<br>
+
+(b)
+
+```
+@ECHO OFF
+
+REM Get user inputs
+SET /P pipeline_name=Enter the nf-core pipeline name (should be chipseq): 
+IF NOT "%pipeline_name%"=="chipseq" (
+  ECHO Error: Please enter "chipseq" as the pipeline name.
+  GOTO EXIT
+)
+
+SET /P data_format=Enter data format (single-end or paired-end): 
+SET /P input_path=/cta/users/merve.kaftancioglu/alternative_scenario/seqs: 
+SET /P genome_path= /cta/users/merve.kaftancioglu/alternative_scenario/nf-core/reference/human_g1k_v37.fasta:
+# SET /P blacklist_path=Enter the path to your blacklist BED file (optional): 
+SET /P output_path=/cta/users/merve.kaftancioglu/alternative_scenario/nf-core/chipseq-2.0.0/output: 
+SET /P profile=singularity:3.8.4  
+
+REM Build the command with user inputs
+SET command=nextflow run nf-core/chipseq -r 2.0.0 
+
+#REM Add options based on data format (only for paired-end)
+#IF "%data_format%"=="paired-end" (
+#  SET command=%command% --paired
+)
+
+SET command=%command% --input %input_path% --genome %genome_path% --outdir %output_path% -profile %profile%
+
+#REM Add optional blacklist path (uncomment if needed)
+#IF NOT "%blacklist_path%"=="" (
+#  SET command=%command% --blacklist %blacklist_path%
+#)
+
+REM Echo the final command for verification
+ECHO The command to be executed:
+ECHO %command%
+
+REM Pause before execution (optional)
+PAUSE
+
+REM Run the pipeline command
+%command%
+
+ECHO Pipeline execution finished!
+
+PAUSE
+
+:EXIT
+
+```
+
+<br>
+
+(c)
+
+```
+#!/bin/bash
+#SBATCH --job-name=bwa_single
+#SBATCH --nodes=1
+#SBATCH --account=users
+#SBATCH --qos=cuda
+#SBATCH --partition=cuda
+#SBATCH --cpus-per-task=16
+#SBATCH -o /cta/users/merve.kaftancioglu/alternative_scenario/processed_seqs/out-err/%x-%j-slurm.out
+#SBATCH -e /cta/users/merve.kaftancioglu/alternative_scenario/processed_seqs/out-err/%x-%j-slurm.err
+
+# Load BWA module
+module load rsync-3.1.3-gcc-9.2.0-mrwcim2
+
+# Define directories (consider adjusting paths)
+input_dir="/cta/users/merve.kaftancioglu/alternative_scenario/processed_seqs/all_data"
+output_dir="/cta/users/merve.kaftancioglu/alternative_scenario/bwa_as/output"
+reference_genome="/cta/users/merve.kaftancioglu/alternative_scenario/bwa_as/reference/human_g1k_v37.fasta"
+
+# Check if BWA index exists
+if [ ! -f "$reference_genome.bwt" ]; then
+  echo "Error: BWA index not found. Please create the index using: bwa mem index $reference_genome"
+  exit 1
+fi
+
+# Define sample IDs (modify as needed)
+sample_ids=("h3k27ac_ms_b_ENCSR295QZX" "h3k27ac_ms_b_ENCSR538URI" "h3k27ac_ms_b_ENCSR617GMR" "h3k4me1_ms_b_ENCSR084FXT" "h3k4me1_ms_b_ENCSR480ITK" "h3k4me1_ms_b_ENCSR759DHN" "h3k4me1_ms_b_ENCSR900IAM" "h3k4me1_ms_b_ENCSR931JYC" "h3k4me3_ms_b_ENCSR260CRI" "h3k4me3_ms_b_ENCSR461QMZ" "h3k4me3_ms_b_ENCSR530AVK" "h3k4me3_ms_b_ENCSR713ZYF" "h3k4me3_ms_b_ENCSR923EGO" "h3k9me3_ms_b_ENCSR445DNH" "h3k9me3_ms_b_ENCSR486SZN" "h3k9me3_ms_b_ENCSR983MKX" "h3k27ac_ms_b_ENCSR364OIK" "h3k27ac_ms_b_ENCSR541PLO" "h3k36me3_ms_cd4_ENCSR471WZE" "h3k36me3_ms_cd4_ENCSR473TGK" "h3k4me1_ms_nk_ENCSR482UGV" "h3k4me1_ms_nk_ENCSR718LCI" "h3k4me1_ms_nk_ENCSR806HUT" "h3k4me3_ms_nk_ENCSR234BAD" "h3k4me3_ms_nk_ENCSR703TWY" "h3k4me3_ms_nk_ENCSR755ZGS" "h3k9me3_ms_nk_ENCSR061ATV" "h3k9me3_ms_nk_ENCSR611YIA" "h3k9me3_ms_nk_ENCSR667HUI" "h3k27ac_ms_nk_ENCSR246TTM")
+
+# Loop through all sample subdirectories
+for sample_dir in "$input_dir"/*; do
+  # Check if directory name matches any sample ID
+  if [[ " ${sample_ids[@]} " =~ " $(basename "$sample_dir") " ]]; then
+    echo "Processing sample: $(basename "$sample_dir")"
+
+    # Create output directory for the sample (if it doesn't exist)
+    mkdir -p "$output_dir/$(basename "$sample_dir")"
+
+    # Find FASTQ files within the sample directory
+    # Adjust the pattern below if your file names differ
+    fastq_files=( "$sample_dir"/*.fastq.gz )
+
+    # Check if any FASTQ files found
+    if [[ ${#fastq_files[@]} -eq 0 ]]; then
+      echo "Warning: No FASTQ files found in $sample_dir"
+      continue # Skip to next iteration if no FASTQ files
+    fi
+
+    # BWA mem command with paired-end or single-end handling
+    if [[ ${#fastq_files[@]} -eq 2 ]]; then
+      # Paired-end reads (assuming *_1.fastq.gz and *_2.fastq.gz naming)
+      bwa mem $reference_genome ${fastq_files[0]} ${fastq_files[1]} > "$output_dir/$(basename "$sample_dir").sam"
+    else
+      # Single-end read (assuming only one FASTQ file)
+      # Extract only the sample name from the directory path
+      sample_name=$(basename "$sample_dir" /)
+      bwa mem $reference_genome ${fastq_files[0]} > "$output_dir/$sample_name.sam"
+    fi
+  fi
+done
+
+```
+
+<br>
+
+### samtools (sam-bam transition):
+
+```
+
+#!/bin/bash
+#SBATCH --job-name=sam_to_bam
+#SBATCH --nodes=1
+#SBATCH --account=users
+#SBATCH --qos=cuda
+#SBATCH --partition=cuda
+#SBATCH --cpus-per-task=16
+#SBATCH -o /cta/users/merve.kaftancioglu/alternative_scenario/samtools_as/out-err/%x-%j-slurm.out
+#SBATCH -e /cta/users/merve.kaftancioglu/alternative_scenario/samtools_as/out-err/%x-%j-slurm.err
+
+# Load samtools module
+module load samtools-1.9-gcc-9.2.0-w7pulwi
+
+# Define directories (consider adjusting paths)
+input_dir="/cta/users/merve.kaftancioglu/alternative_scenario/bwa_as/output"
+output_dir="/cta/users/merve.kaftancioglu/alternative_scenario/samtools_as/output"
+
+# Loop through all subdirectories in the input directory
+for subdir in $input_dir/*; do
+  # Check if it's a directory (avoid hidden folders)
+  if [ -d "$subdir" ]; then
+    # Get the sample name from the subdirectory name
+    sample_name=$(basename "$subdir")
+
+    # Look for a .sam file within the subdirectory
+    sam_file="$subdir/$sample_name.sam"
+
+    # Check if the SAM file exists
+    if [ -f "$sam_file" ]; then
+      # Create a folder with the sample name in the output directory
+      mkdir -p "$output_dir/$sample_name"
+
+      # Convert SAM to BAM using samtools view and place it in the new folder
+      samtools view -bS "$sam_file" > "$output_dir/$sample_name/$sample_name.bam"
+
+      # Check for conversion errors (optional)
+      if [ $? -ne 0 ]; then
+        echo "Error converting $sam_file to BAM. See slurm error logs for details."
+      fi
+    fi
+  fi
+done
+
+echo "Done!")
+```
+<br>
+
+### picard (didn't work)
+
+```
+#!/bin/bash
+#SBATCH --job-name=picard
+#SBATCH --nodes=1
+#SBATCH --account=users
+#SBATCH --qos=cuda
+#SBATCH --partition=cuda
+#SBATCH --cpus-per-task=16
+#SBATCH -o /cta/users/merve.kaftancioglu/alternative_scenario/picard_as/out-err/%x-%j-slurm.out
+#SBATCH -e /cta/users/merve.kaftancioglu/alternative_scenario/picard_as/out-err/%x-%j-slurm.err
+
+# Load BWA module
+
+# Load required modules
+module load picard samtools
+
+# Define input and output file variables
+MAIN_DIR="/cta/users/merve.kaftancioglu/alternative_scenario/samtools_as/output"  # Replace with path to main directory
+REALIGNED_BAMS_DIR="$MAIN_DIR/realigned_bams"  # Output directory for realigned BAMs
+TEMP_DIR="$MAIN_DIR/temp"  # Optional temporary directory (create if needed)
+
+# **Step 1: Mark duplicates on each individual BAM**
+
+# Loop through subdirectories
+for subdir in $MAIN_DIR/*; do
+  # Check if subdirectory is a directory (avoid hidden files)
+  if [[ -d "$subdir" ]]; then
+    # Extract subdirectory name
+    subdir_name=$(basename "$subdir")
+
+    # Find BAM files with wildcard
+    bam_file="$subdir/$subdir_name*.bam"
+
+    # Check if BAM file exists
+    if [[ -f "$bam_file" ]]; then
+      # Mark duplicates and place output in subdirectory
+      mark_dups_cmd="picard MarkDuplicates \
+        I=$bam_file \
+        O=$subdir/$subdir_name.marked_dups.bam \
+        M=$subdir/$subdir_name.marked_dups_metrics.txt \
+        CREATE_INDEX=true"
+
+      echo "Marking duplicates for $subdir_name..."
+      $mark_dups_cmd
+    else
+      echo "No BAM file found in $subdir."
+    fi
+  fi
+done
+
+# **Step 2: Merge marked duplicate BAMs (optional)**
+
+# List of temporary marked duplicate BAMs
+marked_dups_bams="$TEMP_DIR/$SAMPLE_NAME*.marked_dups.bam"
+
+# Merge marked duplicate BAMs
+merge_bam_cmd="picard MergeSamFiles \
+  O=$REALIGNED_BAMS_DIR/$SAMPLE_NAME.merged.marked_dups.bam \
+  $marked_dups_bams"
+
+echo "Merging marked duplicate BAMs..."
+$merge_bam_cmd
+
+# **Step 3: Re-mark duplicates on the merged BAM**
+
+# Re-mark duplicates on the merged BAM
+re_mark_dups_cmd="picard MarkDuplicates \
+  I=$REALIGNED_BAMS_DIR/$SAMPLE_NAME.merged.marked_dups.bam \
+  O=$REALIGNED_BAMS_DIR/$SAMPLE_NAME.realigned.bam \
+  M=$REALIGNED_BAMS_DIR/$SAMPLE_NAME.realigned_metrics.txt \
+  CREATE_INDEX=true"
+
+echo "Re-marking duplicates on merged BAM..."
+$re_mark_dups_cmd
+
+# **Optional Step: Clean up temporary files (if used)**
+# rm -rf $TEMP_DIR  # Uncomment to remove temporary files
+
+echo "Done!"
+
+# **Step 3: Re-mark duplicates on merged BAMs (optional)**
+
+# If you performed merging, adjust commands to work with merged BAMs.
+
+# **Optional Cleanup (if using temporary directory)**
+# rm -rf $TEMP_DIR  # Uncomment to remove temporary files
+
+echo "Done!"
+
+```
+
+<br>
+
+### Docker (used locally, containers that was tried):
+
+
+```
+
+docker pull nfcore/base
+
+docker pull pegi3s/igv:latest
+
+docker pull staphb/multiqc
+
+docker pull nanozoo/multiqc
+
+docker pull zavolab/multiqc
+
+
+```
+
+<br>
+
+### nextflow (recently added to Tosun, didn't work):
+
+```
+
+module load miniconda/22.9
+eval "$(conda shell.bash hook)"
+conda activate nextflow
+nextflow
+
+```
+
+<br>
+
+### singularity (used with nf-core, didn't work):
+
+```
+
+module spider singularity/3.8.4
+
+```
+
+<br> 
+
+### snakemake (used with chocolate ChIP, didnt work):
+
+
+```
+
+snakemake-5.23.0-gcc-9.2.0-awyfooy
+
+```
