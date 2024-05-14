@@ -1,5 +1,5 @@
 ## Bash Scripts:
-# FastQC (samples divided into 31 files): 
+### FastQC (samples divided into 31 files): 
 
 ```
 #!/bin/bash
@@ -30,7 +30,7 @@ echo "DONE!"
 ```
 <br>
 
-# MultiQC (without bash):
+### MultiQC (without bash):
 
 ```
 multiqc -o /cta/users/merve.kaftancioglu/alternative_scenario/post-trim_fastQC_as/output_merged_all /cta/users/merve.kaftancioglu/alternative_scenario/post-trim_fastQC_as/output_merged_all/*_fastqc.zip
@@ -188,8 +188,9 @@ multiqc -o /cta/users/merve.kaftancioglu/alternative_scenario/multiqc_data/h3k9m
 multiqc -o /cta/users/merve.kaftancioglu/alternative_scenario/multiqc_data/h3k4me1_ms_b_ENCSR084FXT /cta/users/merve.kaftancioglu/alternative_scenario/fastQC_as/output/h3k4me1_ms_b_ENCSR084FXT/*_fastqc.zip
 
 ```
+<br>
 
-# Trimmomatic (divided into ~50 files):
+### Trimmomatic (divided into ~50 files):
 
 ```
 #!/bin/bash
