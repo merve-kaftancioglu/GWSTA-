@@ -53,10 +53,6 @@ Figure 4a (top): Total adapter content plot from MultiQC (manually trimmed every
 
 Both graphs indicate only 5% of the sequences, and those actually represent only the samples whose adapter contaminations are larger than 0.1%. This highlights that the approach for both the manual settings and pipeline defaults produced a good level of trimming outputs.
 
-From the FastQC Help:
-
-The plot shows a cumulative percentage count of the proportion of your library which has seen each of the adapter sequences at each position. Once a sequence has been seen in a read it is counted as being present right through to the end of the read so the percentages you see will only increase as the read length goes on., although their sample number differences show different scalings. Both manual and pipeline parameters indicate a correct trimming approach
-
 ## Discussion
 
 The development of the project process was a quite informative, specifically in terms of the nature of bioinformatic analyses, computational experience, and inevitable consequences of human factors. During the research process many online platforms were used, and various researchers guided and suggested different approaches. That’s why, after the end of semester, full complication of the project is planned, and noted suggestions are also hoped to contribute overall understanding of the pipelines and tools. For example, footprinting analysis on main components of retromer proteins like VPS35 (Ch. 16-11.2) and VPS26 (Ch. 10-22.1) can be further investigated for their transcription factor bindings via HOMER. Genrich was another tool which was highly recommended for peak detections. From the readings, one can gather that Galaxy is a great tool definitely worth to discover. 
