@@ -65,7 +65,7 @@ Aside from time constraints and technical issues that prevented conclusive resul
 
 pdf: [MultiQC_Report_h3k4me1_b.pdf](https://github.com/user-attachments/files/15746230/MultiQC_Report_h3k4me1_b.pdf)
 
-igv broad peaks (bigWig files) for VPS35 region (ch16: 46,656,130 - 46,689,519), one of the most imporant component of the retromer complex: ![h3k4me1_b_igv](https://github.com/merve-kaftancioglu/GWSTA-/assets/160722990/265ff79f-f2cd-4aaf-a3e0-1ccb1efac446)
+igv broad peaks (bigWig files) for VPS35 region (ch16: 46,656,130 - 46,689,519), one of the most imporant component of the retromer complex: ![h3k4me1_b_igv](https://github.com/merve-kaftancioglu/GWSTA-/assets/160722990/2a1569c1-1ae2-4b3a-b45e-9cbc01c725ec)
 
 
 ## Materials & Methodology
