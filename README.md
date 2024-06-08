@@ -45,9 +45,11 @@ Figure 2: Pipeline representation (modified from nf-core chipseq page)
 
 Figure 3: Used software and data list from the cluster
 
-![Figure 4: Total adapter content plot from MultiQC](https://github.com/merve-kaftancioglu/GWSTA-/assets/160722990/9416f711-a63f-404c-9c30-fd76d393f129)
+![Figure 4a: Total adapter content plot from MultiQC](https://github.com/merve-kaftancioglu/GWSTA-/assets/160722990/9416f711-a63f-404c-9c30-fd76d393f129)
 
-Figure 4: Total adapter content plot from MultiQC
+![Figure 4b: Total adapter content plot from MultiQC-nf-core](https://github.com/merve-kaftancioglu/GWSTA-/assets/160722990/55ab998a-d648-498f-9fb5-55ec4c484498)
+
+Figure 4a: Total adapter content plot from MultiQC (manually trimmed every sample file) 4b: Trimming of h3k4m1 b cell samples which are trimmed based on nf-core pipeline parameters. 
 
 ## Discussion
 
