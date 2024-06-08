@@ -67,6 +67,7 @@ pdf: [MultiQC_Report_h3k4me1_b.pdf](https://github.com/user-attachments/files/15
 
 igv broad peaks (bigWig files) for VPS35 region (ch16: 46,656,130 - 46,689,519), one of the most imporant component of the retromer complex: ![h3k4me1_b_igv](https://github.com/merve-kaftancioglu/GWSTA-/assets/160722990/2a1569c1-1ae2-4b3a-b45e-9cbc01c725ec)
 
+The sample at the bottom is taken from a healthy individual, while the rest are taken from different MS patients. Note that peaks of the MS b cells are slightly higher than the normal sample, however since the normalization parameters are not fully set, this point stays as a speculation right now.
 
 ## Materials & Methodology
 
