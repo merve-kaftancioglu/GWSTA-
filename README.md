@@ -49,7 +49,11 @@ Figure 3: Used software and data list from the cluster
 
 ![Figure 4b: Total adapter content plot from MultiQC-nf-core](https://github.com/merve-kaftancioglu/GWSTA-/assets/160722990/55ab998a-d648-498f-9fb5-55ec4c484498)
 
-Figure 4a: Total adapter content plot from MultiQC (manually trimmed every sample file) 4b: Trimming of h3k4m1 b cell samples which are trimmed based on nf-core pipeline parameters. 
+Figure 4a: Total adapter content plot from MultiQC (manually trimmed every sample file) 4b: Trimming of h3k4m1 b cell samples which are trimmed based on nf-core pipeline parameters. Both graphs indicate a 5% of the sequences, and they actually represent only the samples whose adapter contaminations are larger than 0.1%. This highlights that the approach for both the manual settings and pipeline defaults produced a good level of trimming outputs.
+
+From the FastQC Help:
+
+The plot shows a cumulative percentage count of the proportion of your library which has seen each of the adapter sequences at each position. Once a sequence has been seen in a read it is counted as being present right through to the end of the read so the percentages you see will only increase as the read length goes on., although their sample number differences show different scalings. Both manual and pipeline parameters indicate a correct trimming approach
 
 ## Discussion
 
