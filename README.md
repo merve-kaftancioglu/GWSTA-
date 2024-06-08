@@ -61,6 +61,7 @@ Although troubleshooting processes turned into very informative lessons, they ca
 
 Aside from time constraints and technical issues that prevented conclusive results, outcomes of this project can be states as: successful data quality evaluation using FastQC and MultiQC, understanding building different script structures for BWA, Bowtie2, STAR, and gaining more experience with containerization tools. 
 
+### Last edit (8.6.2024): The full sample bash job (nf-core chipseq) is working more than 8 days, however, due to cluster speed it is still going on and it might take more than 15 days if this situation continues. That's why, I used sakura for cell and histone type based small jobs. So far, h3km3me1 b cells and cd4 cells are completed (cd4s ended after 12pm, but I wanted to compare these two batches, so, last modification of the report is done on 8th of June, 5am) 
 
 ## Materials & Methodology
 
