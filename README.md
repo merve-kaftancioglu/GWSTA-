@@ -51,7 +51,7 @@ Figure 3: Used software and data list from the cluster
 
 Figure 4a (top): Total adapter content plot from MultiQC (manually trimmed every sample file) and 4b (bottom): Trimming of h3k4m1 b cell samples which are trimmed based on nf-core pipeline parameters. 
 
-Both graphs indicate only 5% of the sequences, and those actually represent only the samples whose adapter contaminations are larger than 0.1%. This highlights that the approach for both the manual settings and pipeline defaults produced a good level of trimming outputs.
+Both graphs indicate only 5% of the sequences with adapter remnants, and those actually represent only the samples whose adapter contaminations are larger than 0.1%. This highlights that the approach for both the manual settings and pipeline defaults produced a good level of trimming outputs.
 
 ## Discussion
 
